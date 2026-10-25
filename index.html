@@ -7,553 +7,89 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --void:#0A0D12;
-    --panel:#12161F;
-    --panel-2:#171C27;
-    --line:#232935;
-    --signal:#B18CFF;
-    --signal-dim:rgba(177,140,255,0.14);
-    --warn:#FFAA4C;
-    --text:#EAF0F2;
-    --muted:#8B95A3;
-    --faint:#5A6472;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{background:var(--void);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
-  ::selection{background:var(--signal);color:#0A0D12;}
-  .mono{font-family:'IBM Plex Mono',monospace;}
-  h1,h2,h3{font-family:'Space Grotesk',sans-serif;}
-
-  /* ---------- nav ---------- */
-  nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:22px 7vw;
-    transition:background .4s ease, border-color .4s ease, padding .4s ease;
-    border-bottom:1px solid transparent;
-  }
-  nav.scrolled{
-    background:rgba(10,13,18,0.75);
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--line);
-    padding:14px 7vw;
-  }
-  .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:0.5px;}
-  .logo span{color:var(--signal);}
-  .nav-links{display:flex;gap:32px;list-style:none;}
-  .nav-links a{
-    color:var(--muted);text-decoration:none;
-    font-family:'IBM Plex Mono',monospace;font-size:12.5px;
-    letter-spacing:0.05em;transition:color .25s ease;
-  }
-  .nav-links a:hover{color:var(--signal);}
-  @media(max-width:820px){.nav-links{display:none;}}
-
-  section{position:relative;z-index:2;padding:130px 7vw;max-width:1180px;margin:0 auto;}
-
-  /* ---------- hero ---------- */
-  #hero{
-    min-height:100vh;display:flex;flex-direction:column;
-    justify-content:center;align-items:flex-start;padding-top:100px;
-  }
-  .badge{
-    display:inline-flex;align-items:center;gap:9px;
-    font-family:'IBM Plex Mono',monospace;font-size:12.5px;
-    color:var(--signal);border:1px solid var(--line);
-    padding:8px 16px;border-radius:30px;margin-bottom:28px;
-    opacity:0;animation:fadeUp .8s ease forwards;animation-delay:.1s;
-  }
-  .badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--signal);
-    box-shadow:0 0 10px var(--signal);}
-  .hero-name{
-    font-size:clamp(46px,7vw,88px);font-weight:700;letter-spacing:-0.02em;line-height:1.02;
-    opacity:0;animation:fadeUp .9s ease forwards;animation-delay:.22s;
-  }
-  .hero-name .accent{color:var(--signal);}
-  .hero-role{
-    font-size:clamp(16px,2vw,20px);color:var(--muted);margin-top:16px;max-width:600px;line-height:1.6;
-    opacity:0;animation:fadeUp .9s ease forwards;animation-delay:.36s;
-  }
-  .pill-row{
-    display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;
-    opacity:0;animation:fadeUp .9s ease forwards;animation-delay:.48s;
-  }
-  .pill{
-    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text);
-    border:1px solid var(--line);padding:8px 15px;border-radius:20px;background:var(--panel);
-  }
-  .hero-actions{
-    display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;
-    opacity:0;animation:fadeUp .9s ease forwards;animation-delay:.6s;
-  }
-  .btn{
-    font-family:'IBM Plex Mono',monospace;font-size:13px;text-decoration:none;
-    padding:14px 26px;border-radius:4px;display:inline-flex;align-items:center;gap:8px;
-    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
-    cursor:pointer;border:1px solid transparent;
-  }
-  .btn-primary{background:var(--signal);color:var(--void);font-weight:500;}
-  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 30px -10px var(--signal-dim);}
-  .btn-ghost{border-color:var(--line);color:var(--text);background:transparent;}
-  .btn-ghost:hover{border-color:var(--signal);color:var(--signal);transform:translateY(-3px);}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
-  .scroll-cue{
-    position:absolute;bottom:34px;left:7vw;display:flex;align-items:center;gap:10px;
-    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--faint);
-    letter-spacing:0.1em;text-transform:uppercase;
-  }
-  .scroll-cue .line{width:1px;height:34px;background:linear-gradient(var(--signal),transparent);
-    animation:scrollLine 1.8s ease-in-out infinite;}
-  @keyframes scrollLine{
-    0%{transform:scaleY(0);transform-origin:top;}
-    50%{transform:scaleY(1);transform-origin:top;}
-    51%{transform-origin:bottom;}
-    100%{transform:scaleY(0);transform-origin:bottom;}
-  }
-
-  .reveal{opacity:0;transform:translateY(32px);
-    transition:opacity .8s cubic-bezier(.16,.84,.44,1), transform .8s cubic-bezier(.16,.84,.44,1);}
-  .reveal.in{opacity:1;transform:translateY(0);}
-
-  .sec-eyebrow{
-    font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--signal);
-    letter-spacing:0.1em;margin-bottom:10px;
-  }
-  .sec-title{font-size:clamp(26px,3.4vw,38px);font-weight:600;letter-spacing:-0.01em;margin-bottom:48px;}
-
-  /* ---------- about ---------- */
-  .about-text p{font-size:16px;line-height:1.85;color:var(--muted);max-width:720px;}
-  .about-text p + p{margin-top:16px;}
-  .about-text b{color:var(--text);font-weight:500;}
-  .stat-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-    background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;
-    margin-top:46px;
-  }
-  .stat-cell{background:var(--panel);padding:28px 22px;text-align:left;}
-  .stat-num{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;color:var(--signal);}
-  .stat-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);
-    margin-top:6px;letter-spacing:0.03em;line-height:1.5;}
-  @media(max-width:760px){.stat-grid{grid-template-columns:repeat(2,1fr);}}
-
-  /* ---------- skills ---------- */
-  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
-  .skill-card{
-    background:var(--panel);border:1px solid var(--line);border-radius:10px;
-    padding:30px 24px;transition:transform .3s ease, border-color .3s ease, background .3s ease;
-  }
-  .skill-card:hover{transform:translateY(-6px);border-color:var(--signal);background:var(--panel-2);}
-  .skill-icon{font-size:28px;margin-bottom:18px;display:block;}
-  .skill-name{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;margin-bottom:8px;}
-  .skill-desc{font-size:13px;color:var(--muted);line-height:1.6;}
-  @media(max-width:900px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
-
-  /* ---------- projects ---------- */
-  .project-list{display:flex;flex-direction:column;gap:22px;}
-  .project-row{
-    background:var(--panel);border:1px solid var(--line);border-radius:10px;
-    padding:38px 40px;position:relative;overflow:hidden;
-    transition:border-color .3s ease, transform .3s ease, background .3s ease;
-  }
-  .project-row:hover{border-color:var(--signal);transform:translateY(-3px);background:var(--panel-2);}
-  .project-cat{
-    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.09em;
-    text-transform:uppercase;color:var(--warn);margin-bottom:14px;display:block;
-  }
-  .project-name{font-family:'Space Grotesk',sans-serif;font-size:23px;font-weight:600;margin-bottom:18px;}
-  .project-bullets{list-style:none;margin-bottom:22px;}
-  .project-bullets li{
-    font-size:14.5px;color:var(--muted);line-height:1.7;padding-left:20px;position:relative;margin-bottom:8px;
-  }
-  .project-bullets li::before{
-    content:'—';position:absolute;left:0;color:var(--signal);
-  }
-  .project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
-  .tag-chip{
-    font-family:'IBM Plex Mono',monospace;font-size:11px;padding:6px 12px;
-    border:1px solid var(--line);border-radius:16px;color:var(--faint);
-  }
-  .project-open-btn{
-    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--signal);
-    background:transparent;border:1px solid var(--signal);padding:10px 18px;border-radius:4px;
-    cursor:pointer;display:inline-flex;align-items:center;gap:8px;
-    transition:background .25s ease, color .25s ease, transform .25s ease;
-  }
-  .project-open-btn:hover{background:var(--signal);color:var(--void);transform:translateY(-2px);}
-
-  /* ---------- modal ---------- */
-  .modal-overlay{
-    position:fixed;inset:0;z-index:1000;background:rgba(6,7,10,0.72);
-    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-    display:flex;align-items:center;justify-content:center;padding:24px;
-    opacity:0;visibility:hidden;transition:opacity .3s ease, visibility .3s ease;
-  }
-  .modal-overlay.open{opacity:1;visibility:visible;}
-  .modal-box{
-    background:var(--panel);border:1px solid var(--line);border-radius:12px;
-    max-width:620px;width:100%;max-height:82vh;overflow-y:auto;padding:44px;position:relative;
-    transform:translateY(24px) scale(0.98);transition:transform .35s cubic-bezier(.16,.84,.44,1);
-  }
-  .modal-overlay.open .modal-box{transform:translateY(0) scale(1);}
-  .modal-close{
-    position:absolute;top:20px;right:20px;background:transparent;border:1px solid var(--line);
-    color:var(--muted);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:14px;
-    transition:border-color .25s ease, color .25s ease, transform .25s ease;
-  }
-  .modal-close:hover{border-color:var(--signal);color:var(--signal);transform:rotate(90deg);}
-  .modal-tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;
-    text-transform:uppercase;color:var(--warn);display:inline-block;margin-bottom:14px;}
-  .modal-title{font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:600;
-    line-height:1.3;margin-bottom:16px;padding-right:20px;}
-  .modal-bullets{list-style:none;margin-bottom:20px;}
-  .modal-bullets li{font-size:14.5px;color:var(--muted);line-height:1.75;padding-left:20px;position:relative;margin-bottom:8px;}
-  .modal-bullets li::before{content:'—';position:absolute;left:0;color:var(--signal);}
-  .modal-stack{display:flex;flex-wrap:wrap;gap:8px;}
-
-  /* ---------- education ---------- */
-  .edu-row{
-    display:flex;gap:26px;align-items:flex-start;
-    background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:36px 40px;
-  }
-  .edu-icon{font-size:34px;line-height:1;}
-  .edu-degree{font-family:'Space Grotesk',sans-serif;font-size:21px;font-weight:600;margin-bottom:6px;}
-  .edu-school{color:var(--muted);font-size:15px;margin-bottom:4px;}
-  .edu-years{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--signal);margin-bottom:14px;}
-  .edu-tags{display:flex;flex-wrap:wrap;gap:10px;}
-  .edu-tag{
-    font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:6px 12px;
-    background:var(--signal-dim);color:var(--signal);border-radius:14px;
-  }
-  @media(max-width:600px){.edu-row{flex-direction:column;}}
-
-  /* ---------- contact ---------- */
-  #contact{padding-bottom:60px;text-align:left;}
-  .contact-lead h2{font-size:clamp(30px,4vw,46px);font-weight:600;line-height:1.15;letter-spacing:-0.01em;margin-bottom:16px;}
-  .contact-lead p{color:var(--muted);max-width:520px;line-height:1.7;font-size:15.5px;margin-bottom:36px;}
-  .contact-links{display:flex;flex-wrap:wrap;gap:14px;}
-  .contact-link{
-    display:flex;align-items:center;gap:10px;
-    font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--text);
-    border:1px solid var(--line);padding:13px 20px;border-radius:8px;text-decoration:none;
-    transition:border-color .25s ease, color .25s ease, transform .25s ease;
-  }
-  .contact-link:hover{border-color:var(--signal);color:var(--signal);transform:translateY(-3px);}
-
-  footer{
-    position:relative;z-index:2;padding:28px 7vw 40px;
-    display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);
-    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--faint);flex-wrap:wrap;gap:10px;
-  }
-
-  @media(prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
-  }
-  @media print{
-    nav,.scroll-cue,footer{display:none !important;}
-    body{background:#fff;color:#000;}
-    section{padding:20px 0;max-width:100%;}
-  }
+:root{--void:#0A0D12;--panel:#12161F;--panel-2:#171C27;--line:#232935;--signal:#B18CFF;--signal-dim:rgba(177,140,255,.14);--warn:#FFAA4C;--text:#EAF0F2;--muted:#8B95A3;--faint:#5A6472}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--void);color:var(--text);font-family:Inter,sans-serif;overflow-x:hidden}::selection{background:var(--signal);color:var(--void)}h1,h2,h3{font-family:"Space Grotesk",sans-serif}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 7vw;transition:.4s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(10,13,18,.75);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:14px 7vw}
+.logo{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:19px;letter-spacing:.5px}.logo span{color:var(--signal)}.nav-links{display:flex;gap:32px;list-style:none}.nav-links a{color:var(--muted);text-decoration:none;font:12.5px "IBM Plex Mono",monospace;letter-spacing:.05em}.nav-links a:hover{color:var(--signal)}@media(max-width:820px){.nav-links{display:none}}
+section{position:relative;z-index:2;padding:130px 7vw;max-width:1180px;margin:0 auto}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-top:100px}
+.badge{display:inline-flex;align-items:center;gap:9px;font:12.5px "IBM Plex Mono",monospace;color:var(--signal);border:1px solid var(--line);padding:8px 16px;border-radius:30px;margin-bottom:28px;animation:fadeUp .8s ease both}
+.badge:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--signal);box-shadow:0 0 10px var(--signal)}
+.hero-name{font-size:clamp(46px,7vw,88px);font-weight:700;letter-spacing:-.02em;line-height:1.02;animation:fadeUp .9s ease both .15s}.hero-name .accent{color:var(--signal)}
+.hero-role{font-size:clamp(16px,2vw,20px);color:var(--muted);margin-top:16px;max-width:600px;line-height:1.6;animation:fadeUp .9s ease both .25s}
+.pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.pill{font:12px "IBM Plex Mono",monospace;color:var(--text);border:1px solid var(--line);padding:8px 15px;border-radius:20px;background:var(--panel)}
+.hero-actions{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap}.btn{font:13px "IBM Plex Mono",monospace;text-decoration:none;padding:14px 26px;border-radius:4px;display:inline-flex;align-items:center;gap:8px;transition:.25s;cursor:pointer;border:1px solid transparent}.btn-primary{background:var(--signal);color:var(--void);font-weight:500}.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 30px -10px var(--signal-dim)}.btn-ghost{border-color:var(--line);color:var(--text)}.btn-ghost:hover{border-color:var(--signal);color:var(--signal);transform:translateY(-3px)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}.scroll-cue{position:absolute;bottom:34px;left:7vw;display:flex;align-items:center;gap:10px;font:11px "IBM Plex Mono",monospace;color:var(--faint);letter-spacing:.1em}.scroll-cue .line{width:1px;height:34px;background:linear-gradient(var(--signal),transparent);animation:scrollLine 1.8s ease-in-out infinite}@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.16,.84,.44,1),transform .8s cubic-bezier(.16,.84,.44,1)}.reveal.in{opacity:1;transform:translateY(0)}
+.sec-eyebrow{font:13px "IBM Plex Mono",monospace;color:var(--signal);letter-spacing:.1em;margin-bottom:10px}.sec-title{font-size:clamp(26px,3.4vw,38px);font-weight:600;margin-bottom:48px}
+.about-text p{font-size:16px;line-height:1.85;color:var(--muted);max-width:720px}.about-text p+p{margin-top:16px}.about-text b{color:var(--text);font-weight:500}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:46px}.stat-cell{background:var(--panel);padding:28px 22px}.stat-num{font:700 32px "Space Grotesk",sans-serif;color:var(--signal)}.stat-label{font:11px "IBM Plex Mono",monospace;color:var(--muted);margin-top:6px;line-height:1.5}@media(max-width:760px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.skill-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:30px 24px;transition:.3s}.skill-card:hover{transform:translateY(-6px);border-color:var(--signal);background:var(--panel-2)}.skill-icon{font-size:28px;margin-bottom:18px;display:block}.skill-name{font:600 18px "Space Grotesk",sans-serif;margin-bottom:8px}.skill-desc{font-size:13px;color:var(--muted);line-height:1.6}@media(max-width:900px){.skills-grid{grid-template-columns:repeat(2,1fr)}}
+.project-list{display:flex;flex-direction:column;gap:22px}.project-row{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:38px 40px;position:relative;overflow:hidden;transition:.3s}.project-row:hover{border-color:var(--signal);transform:translateY(-3px);background:var(--panel-2)}.project-cat{font:11px "IBM Plex Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:var(--warn);margin-bottom:14px;display:block}.project-name{font:600 23px "Space Grotesk",sans-serif;margin-bottom:18px}.project-bullets{list-style:none;margin-bottom:22px}.project-bullets li{font-size:14.5px;color:var(--muted);line-height:1.7;padding-left:20px;position:relative;margin-bottom:8px}.project-bullets li:before{content:"—";position:absolute;left:0;color:var(--signal)}.project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}.tag-chip{font:11px "IBM Plex Mono",monospace;padding:6px 12px;border:1px solid var(--line);border-radius:16px;color:var(--faint)}.project-open-btn{font:12.5px "IBM Plex Mono",monospace;color:var(--signal);background:transparent;border:1px solid var(--signal);padding:10px 18px;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.25s}.project-open-btn:hover{background:var(--signal);color:var(--void);transform:translateY(-2px)}
+.modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(6,7,10,.72);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:.3s}.modal-overlay.open{opacity:1;visibility:visible}.modal-box{background:var(--panel);border:1px solid var(--line);border-radius:12px;max-width:620px;width:100%;max-height:82vh;overflow-y:auto;padding:44px;position:relative;transform:translateY(24px) scale(.98);transition:transform .35s}.modal-overlay.open .modal-box{transform:translateY(0) scale(1)}.modal-close{position:absolute;top:20px;right:20px;background:transparent;border:1px solid var(--line);color:var(--muted);width:34px;height:34px;border-radius:50%;cursor:pointer}.modal-tag{font:11px "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--warn);display:inline-block;margin-bottom:14px}.modal-title{font:600 25px "Space Grotesk",sans-serif;line-height:1.3;margin-bottom:16px;padding-right:20px}.modal-bullets{list-style:none;margin-bottom:20px}.modal-bullets li{font-size:14.5px;color:var(--muted);line-height:1.75;padding-left:20px;position:relative;margin-bottom:8px}.modal-bullets li:before{content:"—";position:absolute;left:0;color:var(--signal)}.modal-stack{display:flex;flex-wrap:wrap;gap:8px}
+.edu-row{display:flex;gap:26px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:36px 40px}.edu-icon{font-size:34px;line-height:1}.edu-degree{font:600 21px "Space Grotesk",sans-serif;margin-bottom:6px}.edu-school{color:var(--muted);font-size:15px;margin-bottom:4px}.edu-years{font:12.5px "IBM Plex Mono",monospace;color:var(--signal);margin-bottom:14px}.edu-tags{display:flex;flex-wrap:wrap;gap:10px}.edu-tag{font:11.5px "IBM Plex Mono",monospace;padding:6px 12px;background:var(--signal-dim);color:var(--signal);border-radius:14px}@media(max-width:600px){.edu-row{flex-direction:column}.project-row{padding:28px 22px}.modal-box{padding:32px 24px}}
+#contact{padding-bottom:60px}.contact-lead h2{font-size:clamp(30px,4vw,46px);font-weight:600;line-height:1.15;margin-bottom:16px}.contact-lead p{color:var(--muted);max-width:520px;line-height:1.7;font-size:15.5px;margin-bottom:36px}.contact-links{display:flex;flex-wrap:wrap;gap:14px}.contact-link{display:flex;align-items:center;gap:10px;font:13px "IBM Plex Mono",monospace;color:var(--text);border:1px solid var(--line);padding:13px 20px;border-radius:8px;text-decoration:none;transition:.25s}.contact-link:hover{border-color:var(--signal);color:var(--signal);transform:translateY(-3px)}
+footer{position:relative;z-index:2;padding:28px 7vw 40px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);font:12px "IBM Plex Mono",monospace;color:var(--faint);flex-wrap:wrap;gap:10px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}@media print{nav,.scroll-cue,footer{display:none!important}body{background:#fff;color:#000}section{padding:20px 0;max-width:100%}}
 </style>
 </head>
 <body>
-
-<nav id="nav">
-  <div class="logo">AKASH<span>.</span>M</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
+<nav id="nav"><div class="logo">AKASH<span>.</span>M</div><ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#projects">Projects</a></li><li><a href="#education">Education</a></li><li><a href="#contact">Contact</a></li></ul></nav>
 <section id="hero">
   <div class="badge">// Available for Data Analyst Roles</div>
   <h1 class="hero-name">AKASH <span class="accent">MEETHA</span></h1>
   <p class="hero-role">B.Tech Artificial Intelligence &amp; Data Science student building applied AI systems — from explainable ML models to forensic detection tools.</p>
-  <div class="pill-row">
-    <span class="pill">Python</span>
-    <span class="pill">SQL</span>
-    <span class="pill">Excel</span>
-    <span class="pill">Power BI</span>
-  </div>
-  <div class="hero-actions">
-    <a href="#projects" class="btn btn-primary">View Projects →</a>
-    <a href="mailto:akashmeetha6072@gmail.com" class="btn btn-ghost">Get In Touch</a>
-  </div>
+  <div class="pill-row"><span class="pill">Python</span><span class="pill">SQL</span><span class="pill">Excel</span><span class="pill">Power BI</span></div>
+  <div class="hero-actions"><a href="#projects" class="btn btn-primary">View Projects →</a><a href="mailto:akashmeetha6072@gmail.com" class="btn btn-ghost">Get In Touch</a></div>
   <div class="scroll-cue"><span class="line"></span>SCROLL</div>
 </section>
-
 <section id="about">
-  <div class="reveal">
-    <div class="sec-eyebrow">01 — About</div>
-    <h2 class="sec-title">Who I Am</h2>
-  </div>
-  <div class="about-text reveal">
-    <p>I'm a <b>B.Tech Artificial Intelligence &amp; Data Science student</b> at Anna University (2023–2027), maintaining a <b>Grade A+</b> average.</p>
-    <p>My work sits at the intersection of <b>data analysis</b> and <b>applied AI</b> — comfortable moving between a Power BI dashboard and a machine learning model that has to explain exactly why it made a decision. I'm fluent in <b>Tamil and English</b>, with working spoken Hindi.</p>
-  </div>
-  <div class="stat-grid reveal">
-    <div class="stat-cell"><div class="stat-num">4+</div><div class="stat-label">AI PROJECTS BUILT</div></div>
-    <div class="stat-cell"><div class="stat-num">4</div><div class="stat-label">CORE TECH SKILLS</div></div>
-    <div class="stat-cell"><div class="stat-num">2027</div><div class="stat-label">B.TECH GRADUATE</div></div>
-    <div class="stat-cell"><div class="stat-num">A+</div><div class="stat-label">GRADE AVERAGE</div></div>
-  </div>
+  <div class="reveal"><div class="sec-eyebrow">01 — About</div><h2 class="sec-title">Who I Am</h2></div>
+  <div class="about-text reveal"><p>I'm a <b>B.Tech Artificial Intelligence &amp; Data Science student</b> at Anna University (2023–2027), maintaining a <b>Grade A+</b> average.</p><p>My work sits at the intersection of <b>data analysis</b> and <b>applied AI</b> — comfortable moving between a Power BI dashboard and a machine learning model that has to explain exactly why it made a decision. I'm fluent in <b>Tamil and English</b>, with working spoken Hindi.</p></div>
+  <div class="stat-grid reveal"><div class="stat-cell"><div class="stat-num">4+</div><div class="stat-label">AI PROJECTS BUILT</div></div><div class="stat-cell"><div class="stat-num">4</div><div class="stat-label">CORE TECH SKILLS</div></div><div class="stat-cell"><div class="stat-num">2027</div><div class="stat-label">B.TECH GRADUATE</div></div><div class="stat-cell"><div class="stat-num">A+</div><div class="stat-label">GRADE AVERAGE</div></div></div>
 </section>
-
 <section id="skills">
-  <div class="reveal">
-    <div class="sec-eyebrow">02 — Skills</div>
-    <h2 class="sec-title">Technical Arsenal</h2>
-  </div>
-  <div class="skills-grid">
-    <div class="skill-card reveal">
-      <span class="skill-icon">🐍</span>
-      <div class="skill-name">Python</div>
-      <div class="skill-desc">Data pipelines, automation and model prototyping.</div>
-    </div>
-    <div class="skill-card reveal">
-      <span class="skill-icon">🗄️</span>
-      <div class="skill-name">SQL</div>
-      <div class="skill-desc">Structuring and querying relational data.</div>
-    </div>
-    <div class="skill-card reveal">
-      <span class="skill-icon">📊</span>
-      <div class="skill-name">Excel</div>
-      <div class="skill-desc">Modelling, analysis and fast data clean-up.</div>
-    </div>
-    <div class="skill-card reveal">
-      <span class="skill-icon">📈</span>
-      <div class="skill-name">Power BI</div>
-      <div class="skill-desc">Dashboards that turn numbers into decisions.</div>
-    </div>
-  </div>
+  <div class="reveal"><div class="sec-eyebrow">02 — Skills</div><h2 class="sec-title">Technical Arsenal</h2></div>
+  <div class="skills-grid"><div class="skill-card reveal"><span class="skill-icon">🐍</span><div class="skill-name">Python</div><div class="skill-desc">Data pipelines, automation and model prototyping.</div></div><div class="skill-card reveal"><span class="skill-icon">🗄️</span><div class="skill-name">SQL</div><div class="skill-desc">Structuring and querying relational data.</div></div><div class="skill-card reveal"><span class="skill-icon">📊</span><div class="skill-name">Excel</div><div class="skill-desc">Modelling, analysis and fast data clean-up.</div></div><div class="skill-card reveal"><span class="skill-icon">📈</span><div class="skill-name">Power BI</div><div class="skill-desc">Dashboards that turn numbers into decisions.</div></div></div>
 </section>
-
 <section id="projects">
-  <div class="reveal">
-    <div class="sec-eyebrow">03 — Projects</div>
-    <h2 class="sec-title">What I've Built</h2>
-  </div>
+  <div class="reveal"><div class="sec-eyebrow">03 — Projects</div><h2 class="sec-title">What I've Built</h2></div>
   <div class="project-list">
-
-    <div class="project-row reveal">
-      <span class="project-cat">AI · NLP · HR Tech</span>
-      <h3 class="project-name">AI-Based Resume Screening System with Explainable Shortlisting</h3>
-      <ul class="project-bullets">
-        <li>Extracts candidate skills from PDF resumes using NLP and stores structured data in an SQL database</li>
-        <li>Computes a transparent match score against configurable job requirements, reporting matched and missing skills for every candidate</li>
-        <li>Supports bulk screening and real-time single-resume testing through an interactive dashboard</li>
-      </ul>
-      <div class="project-tags">
-        <span class="tag-chip">Python</span><span class="tag-chip">PyPDF2</span>
-        <span class="tag-chip">SQLite</span><span class="tag-chip">Streamlit</span>
-      </div>
-      <button type="button" class="project-open-btn" onclick="window.open('https://resume-screening-system-fcx3pao6apsaiezyoetgyt.streamlit.app','_blank')">View Project →</button>
-    </div>
-
-    <div class="project-row reveal">
-      <span class="project-cat">Machine Learning · NLP</span>
-      <h3 class="project-name">Fake News Detector using Machine Learning</h3>
-      <ul class="project-bullets">
-        <li>Classifies news articles as REAL or FAKE by analyzing article text with NLP</li>
-        <li>Converts text into numerical features using TF-IDF and classifies using Logistic Regression</li>
-        <li>Achieves 98.5% accuracy on a dataset of 44,898 articles, with real-time predictions and confidence scores</li>
-      </ul>
-      <div class="project-tags">
-        <span class="tag-chip">Scikit-learn</span><span class="tag-chip">Pandas</span>
-        <span class="tag-chip">TF-IDF</span><span class="tag-chip">Streamlit</span>
-      </div>
-      <button type="button" class="project-open-btn" onclick="openProject(1)">View Project →</button>
-    </div>
-
-    <div class="project-row reveal">
-      <span class="project-cat">Digital Forensics · Computer Vision</span>
-      <h3 class="project-name">Image &amp; Video Manipulation Checker</h3>
-      <ul class="project-bullets">
-        <li>Detects potential manipulation in images and videos using Error Level Analysis (ELA)</li>
-        <li>Highlights edited regions by comparing an image against its recompressed version</li>
-        <li>Samples multiple video frames for the same analysis, producing a manipulation score and verdict</li>
-      </ul>
-      <div class="project-tags">
-        <span class="tag-chip">OpenCV</span><span class="tag-chip">Pillow</span>
-        <span class="tag-chip">NumPy</span><span class="tag-chip">Streamlit</span>
-      </div>
-      <button type="button" class="project-open-btn" onclick="openProject(2)">View Project →</button>
-    </div>
-
-    <div class="project-row reveal">
-      <span class="project-cat">Recommendation System</span>
-      <h3 class="project-name">Personalized Learning Recommendation System</h3>
-      <ul class="project-bullets">
-        <li>Suggests personalized learning resources based on performance history, course preferences and learning patterns</li>
-        <li>Applies content-based filtering with cosine similarity scoring to recommend the most relevant next course</li>
-        <li>Stores student and course data in SQL, with recommendations and progress shown on an interactive dashboard</li>
-      </ul>
-      <div class="project-tags">
-        <span class="tag-chip">Scikit-learn</span><span class="tag-chip">Pandas</span>
-        <span class="tag-chip">SQLite</span><span class="tag-chip">Streamlit</span>
-      </div>
-      <button type="button" class="project-open-btn" 
-onclick="window.open('https://drowsiness-detection-45ly.onrender.com','_blank')">View Project →</button>
-
-    </div>
-
+    <div class="project-row reveal"><span class="project-cat">AI · NLP · HR Tech</span><h3 class="project-name">AI-Based Resume Screening System with Explainable Shortlisting</h3><ul class="project-bullets"><li>Extracts candidate skills from PDF resumes using NLP and stores structured data in an SQL database</li><li>Computes a transparent match score against configurable job requirements, reporting matched and missing skills for every candidate</li><li>Supports bulk screening and real-time single-resume testing through an interactive dashboard</li></ul><div class="project-tags"><span class="tag-chip">Python</span><span class="tag-chip">PyPDF2</span><span class="tag-chip">SQLite</span><span class="tag-chip">Streamlit</span></div><button type="button" class="project-open-btn" onclick="window.open('https://resume-screening-system-fcx3pao6apsaiezyoetgyt.streamlit.app','_blank')">View Project →</button></div>
+    <div class="project-row reveal"><span class="project-cat">Machine Learning · NLP</span><h3 class="project-name">Fake News Detector using Machine Learning</h3><ul class="project-bullets"><li>Classifies news articles as REAL or FAKE by analyzing article text with NLP</li><li>Converts text into numerical features using TF-IDF and classifies using Logistic Regression</li><li>Achieves 98.5% accuracy on a dataset of 44,898 articles, with real-time predictions and confidence scores</li></ul><div class="project-tags"><span class="tag-chip">Scikit-learn</span><span class="tag-chip">Pandas</span><span class="tag-chip">TF-IDF</span><span class="tag-chip">Streamlit</span></div><button type="button" class="project-open-btn" onclick="openProject(1)">View Project →</button></div>
+    <div class="project-row reveal"><span class="project-cat">Digital Forensics · Computer Vision</span><h3 class="project-name">Image &amp; Video Manipulation Checker</h3><ul class="project-bullets"><li>Detects potential manipulation in images and videos using Error Level Analysis (ELA)</li><li>Highlights edited regions by comparing an image against its recompressed version</li><li>Samples multiple video frames for the same analysis, producing a manipulation score and verdict</li></ul><div class="project-tags"><span class="tag-chip">OpenCV</span><span class="tag-chip">Pillow</span><span class="tag-chip">NumPy</span><span class="tag-chip">Streamlit</span></div><button type="button" class="project-open-btn" onclick="openProject(2)">View Project →</button></div>
+    <div class="project-row reveal"><span class="project-cat">Recommendation System</span><h3 class="project-name">Personalized Learning Recommendation System</h3><ul class="project-bullets"><li>Suggests personalized learning resources based on performance history, course preferences and learning patterns</li><li>Applies content-based filtering with cosine similarity scoring to recommend the most relevant next course</li><li>Stores student and course data in SQL, with recommendations and progress shown on an interactive dashboard</li></ul><div class="project-tags"><span class="tag-chip">Scikit-learn</span><span class="tag-chip">Pandas</span><span class="tag-chip">SQLite</span><span class="tag-chip">Streamlit</span></div><button type="button" class="project-open-btn" onclick="openProject(3)">View Project Details →</button></div>
+    <div class="project-row reveal"><span class="project-cat">Mini Project · Computer Vision · AI</span><h3 class="project-name">Drowsiness Detection System</h3><ul class="project-bullets"><li>Detects driver drowsiness using real-time webcam input.</li><li>Identifies closed eyes and yawning.</li><li>Plays an alert sound when drowsiness is detected.</li></ul><div class="project-tags"><span class="tag-chip">Python</span><span class="tag-chip">OpenCV</span><span class="tag-chip">MediaPipe</span><span class="tag-chip">Mini Project</span></div><button type="button" class="project-open-btn" onclick="window.open('https://drowsiness-detection-45ly.onrender.com','_blank')">View Project →</button></div>
   </div>
 </section>
-
-<div class="modal-overlay" id="project-modal" onclick="if(event.target===this) closeProject()">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeProject()" aria-label="Close">✕</button>
-    <span class="modal-tag" id="modal-tag">Project</span>
-    <h3 class="modal-title" id="modal-title"></h3>
-    <ul class="modal-bullets" id="modal-bullets"></ul>
-    <div class="modal-stack" id="modal-stack"></div>
-  </div>
-</div>
-
+<div class="modal-overlay" id="project-modal" onclick="if(event.target===this) closeProject()"><div class="modal-box"><button class="modal-close" onclick="closeProject()" aria-label="Close">✕</button><span class="modal-tag" id="modal-tag">Project</span><h3 class="modal-title" id="modal-title"></h3><ul class="modal-bullets" id="modal-bullets"></ul><div class="modal-stack" id="modal-stack"></div></div></div>
 <section id="education">
-  <div class="reveal">
-    <div class="sec-eyebrow">04 — Education</div>
-    <h2 class="sec-title">Academic Background</h2>
-  </div>
-  <div class="project-row reveal">
-      <span class="project-cat">Computer Vision · AI</span>
-      <h3 class="project-name">Drowsiness Detection System</h3>
-      <ul class="project-bullets">
-        <li>Detects driver drowsiness using real-time webcam input</li>
-        <li>Identifies closed eyes, yawning, and head drooping</li>
-        <li>Triggers an alert and logs detected events</li>
-      </ul>
-      <div class="project-tags">
-        <span class="tag-chip">Python</span>
-        <span class="tag-chip">OpenCV</span>
-        <span class="tag-chip">MediaPipe</span>
-      </div>
-      <button type="button" class="project-open-btn"
-        
-         onclick="window.open('https://drowsiness-detection-45ly.onrender.com','_blank')">
-
-        View Project →
-      </button>
-    </div>
-  <div class="edu-row reveal">
-    <div class="edu-icon">🎓</div>
-    <div>
-      <div class="edu-degree">B.Tech — Artificial Intelligence &amp; Data Science</div>
-      <div class="edu-school">Anna University</div>
-      <div class="edu-years">2023 – 2027 · Grade A+</div>
-      <div class="edu-tags">
-        <span class="edu-tag">🌐 Languages: Tamil, English, Hindi</span>
-      </div>
-    </div>
-  </div>
+  <div class="reveal"><div class="sec-eyebrow">04 — Education</div><h2 class="sec-title">Academic Background</h2></div>
+  <div class="edu-row reveal"><div class="edu-icon">🎓</div><div><div class="edu-degree">B.Tech — Artificial Intelligence &amp; Data Science</div><div class="edu-school">Anna University</div><div class="edu-years">2023 – 2027 · Grade A+</div><div class="edu-tags"><span class="edu-tag">🌐 Languages: Tamil, English, Hindi</span></div></div></div>
 </section>
-
 <section id="contact">
-  <div class="contact-lead reveal">
-    <h2>Let's Build Something <span style="color:var(--signal)">Together.</span></h2>
-    <p>Open to Data Analyst and AI internship / entry-level roles. Reach out directly through any of the links below.</p>
-  </div>
-  <div class="contact-links reveal">
-    <a class="contact-link" href="mailto:akashmeetha6072@gmail.com">✉ akashmeetha6072@gmail.com</a>
-    <a class="contact-link" href="tel:7010542280">☎ +91 70105 42280</a>
-  </div>
+  <div class="contact-lead reveal"><h2>Let's Build Something <span style="color:var(--signal)">Together.</span></h2><p>Open to Data Analyst and AI internship / entry-level roles. Reach out directly through any of the links below.</p></div>
+  <div class="contact-links reveal"><a class="contact-link" href="mailto:akashmeetha6072@gmail.com">✉ akashmeetha6072@gmail.com</a><a class="contact-link" href="tel:7010542280">☎ +91 70105 42280</a></div>
 </section>
-
-<footer>
-  <span>© 2026 Akash Meetha</span>
-  <span>Salem, Tamil Nadu</span>
-</footer>
-
+<footer><span>© 2026 Akash Meetha</span><span>Salem, Tamil Nadu</span></footer>
 <script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
-
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
-  }, {threshold:0.12});
-  revealEls.forEach(el => io.observe(el));
-
-  const projectData = [
-    {
-      tag: 'AI · NLP · HR Tech',
-      title: 'AI-Based Resume Screening System with Explainable Shortlisting',
-      bullets: [
-        'Extracts candidate skills from PDF resumes using NLP and stores structured data in an SQL database',
-        'Computes a transparent match score against configurable job requirements, reporting matched and missing skills for every candidate — unlike black-box ATS tools',
-        'Supports bulk screening of multiple resumes and real-time single-resume testing through an interactive dashboard'
-      ],
-      stack: ['Python', 'PyPDF2', 'SQLite (SQL)', 'Streamlit']
-    },
-    {
-      tag: 'Machine Learning · NLP',
-      title: 'Fake News Detector using Machine Learning',
-      bullets: [
-        'Classifies news articles as REAL or FAKE by analyzing article text using Natural Language Processing',
-        'Converts text into numerical features using TF-IDF and classifies using a Logistic Regression model',
-        'Achieves 98.5% accuracy on a dataset of 44,898 articles, with real-time predictions and confidence scores via a web dashboard'
-      ],
-      stack: ['Python', 'Scikit-learn', 'Pandas', 'NLP (TF-IDF)', 'Streamlit']
-    },
-    {
-      tag: 'Digital Forensics · Computer Vision',
-      title: 'Image & Video Manipulation Checker',
-      bullets: [
-        'Detects potential manipulation in images and videos using Error Level Analysis (ELA)',
-        'Highlights edited regions by comparing an image against its recompressed version',
-        'Samples multiple video frames and applies the same forensic analysis, producing a manipulation score and verdict via a dashboard'
-      ],
-      stack: ['Python', 'OpenCV', 'Pillow (PIL)', 'NumPy', 'Streamlit']
-    },
-    {
-      tag: 'Recommendation System',
-      title: 'Personalized Learning Recommendation System',
-      bullets: [
-        "Suggests personalized learning resources based on a student's performance history, course preferences and learning patterns",
-        'Applies content-based filtering with similarity scoring to recommend the most relevant next course or topic',
-        'Stores student and course data in an SQL database, with recommendations and progress tracked on an interactive dashboard'
-      ],
-      stack: ['Python', 'Scikit-learn (Cosine Similarity)', 'Pandas', 'SQLite (SQL)', 'Streamlit']
-    },
- {
-  title: 'Real-time Drowsiness Detection',
-  bullets: [
-    'Detects driver fatigue and drowsiness in real-time using webcam feed.',
-    'Utilizes facial landmark detection to calculate Eye Aspect Ratio (EAR).',
-    'Triggers an alert/alarm system when drowsiness patterns are identified.'
-  ],
-  stack: ['Python', 'OpenCV', 'Dlib', 'NumPy'],
-  link: 'https://github.com/Akashmeetha/Real-time-drowsiness-detection'
- } 
-  ];
-
-  const modalOverlay = document.getElementById('project-modal');
-  const modalTag = document.getElementById('modal-tag');
-  const modalTitle = document.getElementById('modal-title');
-  const modalBullets = document.getElementById('modal-bullets');
-  const modalStack = document.getElementById('modal-stack');
-
-  function openProject(i){
-    const p = projectData[i];
-    if(!p) return;
-    modalTag.textContent = p.tag;
-    modalTitle.textContent = p.title;
-    modalBullets.innerHTML = p.bullets.map(b => `<li>${b}</li>`).join('');
-    modalStack.innerHTML = p.stack.map(s => `<span class="tag-chip">${s}</span>`).join('');
-    modalOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeProject(){
-    modalOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeProject(); });
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+const revealEls=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.12});
+revealEls.forEach(el=>io.observe(el));
+const projectData=[
+ {tag:'AI · NLP · HR Tech',title:'AI-Based Resume Screening System with Explainable Shortlisting',bullets:['Extracts candidate skills from PDF resumes using NLP and stores structured data in an SQL database','Computes a transparent match score against configurable job requirements, reporting matched and missing skills for every candidate','Supports bulk screening of multiple resumes and real-time single-resume testing through an interactive dashboard'],stack:['Python','PyPDF2','SQLite (SQL)','Streamlit']},
+ {tag:'Machine Learning · NLP',title:'Fake News Detector using Machine Learning',bullets:['Classifies news articles as REAL or FAKE by analyzing article text using Natural Language Processing','Converts text into numerical features using TF-IDF and classifies using a Logistic Regression model','Achieves 98.5% accuracy on a dataset of 44,898 articles, with real-time predictions and confidence scores via a web dashboard'],stack:['Python','Scikit-learn','Pandas','NLP (TF-IDF)','Streamlit']},
+ {tag:'Digital Forensics · Computer Vision',title:'Image & Video Manipulation Checker',bullets:['Detects potential manipulation in images and videos using Error Level Analysis (ELA)','Highlights edited regions by comparing an image against its recompressed version','Samples multiple video frames and applies the same forensic analysis, producing a manipulation score and verdict via a dashboard'],stack:['Python','OpenCV','Pillow (PIL)','NumPy','Streamlit']},
+ {tag:'Recommendation System',title:'Personalized Learning Recommendation System',bullets:["Suggests personalized learning resources based on a student's performance history, course preferences and learning patterns",'Applies content-based filtering with similarity scoring to recommend the most relevant next course or topic','Stores student and course data in an SQL database, with recommendations and progress tracked on an interactive dashboard'],stack:['Python','Scikit-learn (Cosine Similarity)','Pandas','SQLite (SQL)','Streamlit']},
+ {tag:'Mini Project · Computer Vision · AI',title:'Drowsiness Detection System',bullets:['Detects driver drowsiness using real-time webcam input.','Identifies closed eyes and yawning.','Plays an alert sound when drowsiness is detected.'],stack:['Python','OpenCV','MediaPipe','Mini Project']}
+];
+const modalOverlay=document.getElementById('project-modal'),modalTag=document.getElementById('modal-tag'),modalTitle=document.getElementById('modal-title'),modalBullets=document.getElementById('modal-bullets'),modalStack=document.getElementById('modal-stack');
+function openProject(i){const p=projectData[i];if(!p)return;modalTag.textContent=p.tag;modalTitle.textContent=p.title;modalBullets.innerHTML=p.bullets.map(b=>`<li>${b}</li>`).join('');modalStack.innerHTML=p.stack.map(s=>`<span class="tag-chip">${s}</span>`).join('');modalOverlay.classList.add('open');document.body.style.overflow='hidden'}
+function closeProject(){modalOverlay.classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProject()});
 </script>
 </body>
 </html>
-
