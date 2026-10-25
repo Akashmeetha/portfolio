@@ -1,95 +1,882 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Akash Meetha — AI &amp; Data Science</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{--void:#0A0D12;--panel:#12161F;--panel-2:#171C27;--line:#232935;--signal:#B18CFF;--signal-dim:rgba(177,140,255,.14);--warn:#FFAA4C;--text:#EAF0F2;--muted:#8B95A3;--faint:#5A6472}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--void);color:var(--text);font-family:Inter,sans-serif;overflow-x:hidden}::selection{background:var(--signal);color:var(--void)}h1,h2,h3{font-family:"Space Grotesk",sans-serif}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 7vw;transition:.4s;border-bottom:1px solid transparent}
-nav.scrolled{background:rgba(10,13,18,.75);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:14px 7vw}
-.logo{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:19px;letter-spacing:.5px}.logo span{color:var(--signal)}.nav-links{display:flex;gap:32px;list-style:none}.nav-links a{color:var(--muted);text-decoration:none;font:12.5px "IBM Plex Mono",monospace;letter-spacing:.05em}.nav-links a:hover{color:var(--signal)}@media(max-width:820px){.nav-links{display:none}}
-section{position:relative;z-index:2;padding:130px 7vw;max-width:1180px;margin:0 auto}
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-top:100px}
-.badge{display:inline-flex;align-items:center;gap:9px;font:12.5px "IBM Plex Mono",monospace;color:var(--signal);border:1px solid var(--line);padding:8px 16px;border-radius:30px;margin-bottom:28px;animation:fadeUp .8s ease both}
-.badge:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--signal);box-shadow:0 0 10px var(--signal)}
-.hero-name{font-size:clamp(46px,7vw,88px);font-weight:700;letter-spacing:-.02em;line-height:1.02;animation:fadeUp .9s ease both .15s}.hero-name .accent{color:var(--signal)}
-.hero-role{font-size:clamp(16px,2vw,20px);color:var(--muted);margin-top:16px;max-width:600px;line-height:1.6;animation:fadeUp .9s ease both .25s}
-.pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.pill{font:12px "IBM Plex Mono",monospace;color:var(--text);border:1px solid var(--line);padding:8px 15px;border-radius:20px;background:var(--panel)}
-.hero-actions{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap}.btn{font:13px "IBM Plex Mono",monospace;text-decoration:none;padding:14px 26px;border-radius:4px;display:inline-flex;align-items:center;gap:8px;transition:.25s;cursor:pointer;border:1px solid transparent}.btn-primary{background:var(--signal);color:var(--void);font-weight:500}.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 30px -10px var(--signal-dim)}.btn-ghost{border-color:var(--line);color:var(--text)}.btn-ghost:hover{border-color:var(--signal);color:var(--signal);transform:translateY(-3px)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}.scroll-cue{position:absolute;bottom:34px;left:7vw;display:flex;align-items:center;gap:10px;font:11px "IBM Plex Mono",monospace;color:var(--faint);letter-spacing:.1em}.scroll-cue .line{width:1px;height:34px;background:linear-gradient(var(--signal),transparent);animation:scrollLine 1.8s ease-in-out infinite}@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.16,.84,.44,1),transform .8s cubic-bezier(.16,.84,.44,1)}.reveal.in{opacity:1;transform:translateY(0)}
-.sec-eyebrow{font:13px "IBM Plex Mono",monospace;color:var(--signal);letter-spacing:.1em;margin-bottom:10px}.sec-title{font-size:clamp(26px,3.4vw,38px);font-weight:600;margin-bottom:48px}
-.about-text p{font-size:16px;line-height:1.85;color:var(--muted);max-width:720px}.about-text p+p{margin-top:16px}.about-text b{color:var(--text);font-weight:500}
-.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:46px}.stat-cell{background:var(--panel);padding:28px 22px}.stat-num{font:700 32px "Space Grotesk",sans-serif;color:var(--signal)}.stat-label{font:11px "IBM Plex Mono",monospace;color:var(--muted);margin-top:6px;line-height:1.5}@media(max-width:760px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
-.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.skill-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:30px 24px;transition:.3s}.skill-card:hover{transform:translateY(-6px);border-color:var(--signal);background:var(--panel-2)}.skill-icon{font-size:28px;margin-bottom:18px;display:block}.skill-name{font:600 18px "Space Grotesk",sans-serif;margin-bottom:8px}.skill-desc{font-size:13px;color:var(--muted);line-height:1.6}@media(max-width:900px){.skills-grid{grid-template-columns:repeat(2,1fr)}}
-.project-list{display:flex;flex-direction:column;gap:22px}.project-row{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:38px 40px;position:relative;overflow:hidden;transition:.3s}.project-row:hover{border-color:var(--signal);transform:translateY(-3px);background:var(--panel-2)}.project-cat{font:11px "IBM Plex Mono",monospace;letter-spacing:.09em;text-transform:uppercase;color:var(--warn);margin-bottom:14px;display:block}.project-name{font:600 23px "Space Grotesk",sans-serif;margin-bottom:18px}.project-bullets{list-style:none;margin-bottom:22px}.project-bullets li{font-size:14.5px;color:var(--muted);line-height:1.7;padding-left:20px;position:relative;margin-bottom:8px}.project-bullets li:before{content:"—";position:absolute;left:0;color:var(--signal)}.project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}.tag-chip{font:11px "IBM Plex Mono",monospace;padding:6px 12px;border:1px solid var(--line);border-radius:16px;color:var(--faint)}.project-open-btn{font:12.5px "IBM Plex Mono",monospace;color:var(--signal);background:transparent;border:1px solid var(--signal);padding:10px 18px;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.25s}.project-open-btn:hover{background:var(--signal);color:var(--void);transform:translateY(-2px)}
-.modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(6,7,10,.72);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:.3s}.modal-overlay.open{opacity:1;visibility:visible}.modal-box{background:var(--panel);border:1px solid var(--line);border-radius:12px;max-width:620px;width:100%;max-height:82vh;overflow-y:auto;padding:44px;position:relative;transform:translateY(24px) scale(.98);transition:transform .35s}.modal-overlay.open .modal-box{transform:translateY(0) scale(1)}.modal-close{position:absolute;top:20px;right:20px;background:transparent;border:1px solid var(--line);color:var(--muted);width:34px;height:34px;border-radius:50%;cursor:pointer}.modal-tag{font:11px "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--warn);display:inline-block;margin-bottom:14px}.modal-title{font:600 25px "Space Grotesk",sans-serif;line-height:1.3;margin-bottom:16px;padding-right:20px}.modal-bullets{list-style:none;margin-bottom:20px}.modal-bullets li{font-size:14.5px;color:var(--muted);line-height:1.75;padding-left:20px;position:relative;margin-bottom:8px}.modal-bullets li:before{content:"—";position:absolute;left:0;color:var(--signal)}.modal-stack{display:flex;flex-wrap:wrap;gap:8px}
-.edu-row{display:flex;gap:26px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:36px 40px}.edu-icon{font-size:34px;line-height:1}.edu-degree{font:600 21px "Space Grotesk",sans-serif;margin-bottom:6px}.edu-school{color:var(--muted);font-size:15px;margin-bottom:4px}.edu-years{font:12.5px "IBM Plex Mono",monospace;color:var(--signal);margin-bottom:14px}.edu-tags{display:flex;flex-wrap:wrap;gap:10px}.edu-tag{font:11.5px "IBM Plex Mono",monospace;padding:6px 12px;background:var(--signal-dim);color:var(--signal);border-radius:14px}@media(max-width:600px){.edu-row{flex-direction:column}.project-row{padding:28px 22px}.modal-box{padding:32px 24px}}
-#contact{padding-bottom:60px}.contact-lead h2{font-size:clamp(30px,4vw,46px);font-weight:600;line-height:1.15;margin-bottom:16px}.contact-lead p{color:var(--muted);max-width:520px;line-height:1.7;font-size:15.5px;margin-bottom:36px}.contact-links{display:flex;flex-wrap:wrap;gap:14px}.contact-link{display:flex;align-items:center;gap:10px;font:13px "IBM Plex Mono",monospace;color:var(--text);border:1px solid var(--line);padding:13px 20px;border-radius:8px;text-decoration:none;transition:.25s}.contact-link:hover{border-color:var(--signal);color:var(--signal);transform:translateY(-3px)}
-footer{position:relative;z-index:2;padding:28px 7vw 40px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);font:12px "IBM Plex Mono",monospace;color:var(--faint);flex-wrap:wrap;gap:10px}
-@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}@media print{nav,.scroll-cue,footer{display:none!important}body{background:#fff;color:#000}section{padding:20px 0;max-width:100%}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+
+  <title>Akash Meetha | AI & Data Science Portfolio</title>
+  <meta name="description" content="Explore Akash Meetha's portfolio, education, Python, SQL, Power BI, AI projects, internship and achievements.">
+  <meta name="keywords" content="Akash Meetha, AI, Data Science, Python, SQL, Power BI, Portfolio">
+  <meta name="author" content="Akash Meetha">
+  <meta property="og:title" content="Akash Meetha | Portfolio">
+  <meta property="og:description" content="AI & Data Science student portfolio and projects.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --surface: #121a2e;
+      --surface2: #19243c;
+      --text: #f1f5ff;
+      --muted: #a9b5cf;
+      --accent: #75e0d0;
+      --accent2: #a395ff;
+      --border: rgba(255,255,255,.12);
+      --radius: 18px;
+      --max-width: 1120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    img { max-width: 100%; display: block; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(var(--max-width), 90%);
+      margin-inline: auto;
+    }
+
+    .accent { color: var(--accent); }
+    .muted { color: var(--muted); }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11,16,32,.93);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 21px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .88rem;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--accent); }
+
+    .menu-btn {
+      display: none;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+
+    section { padding: 82px 0; }
+
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(117,224,208,.14), transparent 38%),
+        radial-gradient(ellipse at 10% 85%, rgba(163,149,255,.12), transparent 35%);
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 8vw, 5.6rem);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      margin: 20px 0;
+    }
+
+    h1 span {
+      color: transparent;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero-description {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+    }
+
+    .hero-buttons, .social-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 26px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 17px;
+      font-size: .92rem;
+      font-weight: 700;
+      transition: transform .2s, border-color .2s, background .2s;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { color: #071a1a; background: var(--accent); border-color: var(--accent); }
+    .btn-secondary { background: var(--surface); }
+    .btn-small { padding: 8px 12px; font-size: .85rem; }
+
+    .social-row a {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .social-row a:hover { color: var(--accent); }
+
+    .section-heading { margin-bottom: 32px; }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      line-height: 1.2;
+      margin: 10px 0 12px;
+      letter-spacing: -1px;
+    }
+
+    .section-description {
+      max-width: 730px;
+      color: var(--muted);
+    }
+
+    .panel, .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 25px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+    }
+
+    .about-copy p + p { margin-top: 14px; }
+
+    .facts { display: grid; gap: 15px; }
+
+    .fact {
+      padding-bottom: 13px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .fact:last-child { padding-bottom: 0; border-bottom: 0; }
+    .fact strong { display: block; margin-bottom: 3px; }
+    .fact span { color: var(--muted); font-size: .94rem; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .skill-card { text-align: center; padding: 23px 12px; }
+    .skill-icon { font-size: 1.9rem; margin-bottom: 8px; }
+    .skill-card h3 { font-size: 1rem; }
+    .skill-card p { color: var(--muted); font-size: .82rem; margin-top: 4px; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .project-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .project-icon { font-size: 2rem; margin-bottom: 12px; }
+    .project-card h3 { font-size: 1.13rem; line-height: 1.45; margin-bottom: 10px; }
+    .project-card p { color: var(--muted); margin-bottom: 17px; }
+    .project-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 16px; }
+
+    .tag {
+      color: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 3px 10px;
+      font-size: .77rem;
+    }
+
+    .timeline { display: grid; gap: 17px; }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .timeline-icon {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: var(--surface2);
+      font-size: 1.5rem;
+    }
+
+    .timeline-item h3 { font-size: 1.08rem; margin-bottom: 5px; }
+    .timeline-item p { color: var(--muted); }
+    .timeline-item .highlight { color: var(--accent); margin-top: 5px; }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .card h3 { margin-bottom: 12px; }
+    .card p { color: var(--muted); }
+    .card p + p { margin-top: 9px; }
+
+    .achievement {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .achievement-icon { font-size: 1.8rem; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      overflow-wrap: anywhere;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .contact-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .contact-icon { font-size: 1.6rem; }
+    .contact-card small { display: block; color: var(--muted); }
+    .contact-card strong { font-size: .91rem; }
+
+    .contact-note { color: var(--muted); margin-top: 20px; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .back-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #071a1a;
+      font-size: 1.2rem;
+      font-weight: 800;
+      z-index: 20;
+      box-shadow: 0 5px 20px rgba(0,0,0,.25);
+    }
+
+    .reveal { animation: fadeIn .65s ease both; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 850px) {
+      .nav-links { gap: 12px; }
+      .nav-links a { font-size: .82rem; }
+      .skills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 650px) {
+      html { scroll-padding-top: 70px; }
+      section { padding: 62px 0; }
+      nav { min-height: 66px; }
+      .menu-btn { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 66px;
+        left: 0;
+        right: 0;
+        padding: 20px 5%;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: .95rem; }
+      .hero { min-height: 75vh; }
+      h1 { letter-spacing: -1.5px; }
+      .projects-grid, .two-column, .contact-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .panel, .card { padding: 20px; }
+      .back-top { right: 12px; bottom: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<nav id="nav"><div class="logo">AKASH<span>.</span>M</div><ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#projects">Projects</a></li><li><a href="#education">Education</a></li><li><a href="#contact">Contact</a></li></ul></nav>
-<section id="hero">
-  <div class="badge">// Available for Data Analyst Roles</div>
-  <h1 class="hero-name">AKASH <span class="accent">MEETHA</span></h1>
-  <p class="hero-role">B.Tech Artificial Intelligence &amp; Data Science student building applied AI systems — from explainable ML models to forensic detection tools.</p>
-  <div class="pill-row"><span class="pill">Python</span><span class="pill">SQL</span><span class="pill">Excel</span><span class="pill">Power BI</span></div>
-  <div class="hero-actions"><a href="#projects" class="btn btn-primary">View Projects →</a><a href="mailto:akashmeetha6072@gmail.com" class="btn btn-ghost">Get In Touch</a></div>
-  <div class="scroll-cue"><span class="line"></span>SCROLL</div>
-</section>
-<section id="about">
-  <div class="reveal"><div class="sec-eyebrow">01 — About</div><h2 class="sec-title">Who I Am</h2></div>
-  <div class="about-text reveal"><p>I'm a <b>B.Tech Artificial Intelligence &amp; Data Science student</b> at Anna University (2023–2027), maintaining a <b>Grade A+</b> average.</p><p>My work sits at the intersection of <b>data analysis</b> and <b>applied AI</b> — comfortable moving between a Power BI dashboard and a machine learning model that has to explain exactly why it made a decision. I'm fluent in <b>Tamil and English</b>, with working spoken Hindi.</p></div>
-  <div class="stat-grid reveal"><div class="stat-cell"><div class="stat-num">4+</div><div class="stat-label">AI PROJECTS BUILT</div></div><div class="stat-cell"><div class="stat-num">4</div><div class="stat-label">CORE TECH SKILLS</div></div><div class="stat-cell"><div class="stat-num">2027</div><div class="stat-label">B.TECH GRADUATE</div></div><div class="stat-cell"><div class="stat-num">A+</div><div class="stat-label">GRADE AVERAGE</div></div></div>
-</section>
-<section id="skills">
-  <div class="reveal"><div class="sec-eyebrow">02 — Skills</div><h2 class="sec-title">Technical Arsenal</h2></div>
-  <div class="skills-grid"><div class="skill-card reveal"><span class="skill-icon">🐍</span><div class="skill-name">Python</div><div class="skill-desc">Data pipelines, automation and model prototyping.</div></div><div class="skill-card reveal"><span class="skill-icon">🗄️</span><div class="skill-name">SQL</div><div class="skill-desc">Structuring and querying relational data.</div></div><div class="skill-card reveal"><span class="skill-icon">📊</span><div class="skill-name">Excel</div><div class="skill-desc">Modelling, analysis and fast data clean-up.</div></div><div class="skill-card reveal"><span class="skill-icon">📈</span><div class="skill-name">Power BI</div><div class="skill-desc">Dashboards that turn numbers into decisions.</div></div></div>
-</section>
-<section id="projects">
-  <div class="reveal"><div class="sec-eyebrow">03 — Projects</div><h2 class="sec-title">What I've Built</h2></div>
-  <div class="project-list">
-    <div class="project-row reveal"><span class="project-cat">AI · NLP · HR Tech</span><h3 class="project-name">AI-Based Resume Screening System with Explainable Shortlisting</h3><ul class="project-bullets"><li>Extracts candidate skills from PDF resumes using NLP and stores structured data in an SQL database</li><li>Computes a transparent match score against configurable job requirements, reporting matched and missing skills for every candidate</li><li>Supports bulk screening and real-time single-resume testing through an interactive dashboard</li></ul><div class="project-tags"><span class="tag-chip">Python</span><span class="tag-chip">PyPDF2</span><span class="tag-chip">SQLite</span><span class="tag-chip">Streamlit</span></div><button type="button" class="project-open-btn" onclick="window.open('https://resume-screening-system-fcx3pao6apsaiezyoetgyt.streamlit.app','_blank')">View Project →</button></div>
-    <div class="project-row reveal"><span class="project-cat">Machine Learning · NLP</span><h3 class="project-name">Fake News Detector using Machine Learning</h3><ul class="project-bullets"><li>Classifies news articles as REAL or FAKE by analyzing article text with NLP</li><li>Converts text into numerical features using TF-IDF and classifies using Logistic Regression</li><li>Achieves 98.5% accuracy on a dataset of 44,898 articles, with real-time predictions and confidence scores</li></ul><div class="project-tags"><span class="tag-chip">Scikit-learn</span><span class="tag-chip">Pandas</span><span class="tag-chip">TF-IDF</span><span class="tag-chip">Streamlit</span></div><button type="button" class="project-open-btn" onclick="openProject(1)">View Project →</button></div>
-    <div class="project-row reveal"><span class="project-cat">Digital Forensics · Computer Vision</span><h3 class="project-name">Image &amp; Video Manipulation Checker</h3><ul class="project-bullets"><li>Detects potential manipulation in images and videos using Error Level Analysis (ELA)</li><li>Highlights edited regions by comparing an image against its recompressed version</li><li>Samples multiple video frames for the same analysis, producing a manipulation score and verdict</li></ul><div class="project-tags"><span class="tag-chip">OpenCV</span><span class="tag-chip">Pillow</span><span class="tag-chip">NumPy</span><span class="tag-chip">Streamlit</span></div><button type="button" class="project-open-btn" onclick="openProject(2)">View Project →</button></div>
-    <div class="project-row reveal"><span class="project-cat">Recommendation System</span><h3 class="project-name">Personalized Learning Recommendation System</h3><ul class="project-bullets"><li>Suggests personalized learning resources based on performance history, course preferences and learning patterns</li><li>Applies content-based filtering with cosine similarity scoring to recommend the most relevant next course</li><li>Stores student and course data in SQL, with recommendations and progress shown on an interactive dashboard</li></ul><div class="project-tags"><span class="tag-chip">Scikit-learn</span><span class="tag-chip">Pandas</span><span class="tag-chip">SQLite</span><span class="tag-chip">Streamlit</span></div><button type="button" class="project-open-btn" onclick="openProject(3)">View Project Details →</button></div>
-    <div class="project-row reveal"><span class="project-cat">Mini Project · Computer Vision · AI</span><h3 class="project-name">Drowsiness Detection System</h3><ul class="project-bullets"><li>Detects driver drowsiness using real-time webcam input.</li><li>Identifies closed eyes and yawning.</li><li>Plays an alert sound when drowsiness is detected.</li></ul><div class="project-tags"><span class="tag-chip">Python</span><span class="tag-chip">OpenCV</span><span class="tag-chip">MediaPipe</span><span class="tag-chip">Mini Project</span></div><button type="button" class="project-open-btn" onclick="window.open('https://drowsiness-detection-45ly.onrender.com','_blank')">View Project →</button></div>
-  </div>
-</section>
-<div class="modal-overlay" id="project-modal" onclick="if(event.target===this) closeProject()"><div class="modal-box"><button class="modal-close" onclick="closeProject()" aria-label="Close">✕</button><span class="modal-tag" id="modal-tag">Project</span><h3 class="modal-title" id="modal-title"></h3><ul class="modal-bullets" id="modal-bullets"></ul><div class="modal-stack" id="modal-stack"></div></div></div>
-<section id="education">
-  <div class="reveal"><div class="sec-eyebrow">04 — Education</div><h2 class="sec-title">Academic Background</h2></div>
-  <div class="edu-row reveal"><div class="edu-icon">🎓</div><div><div class="edu-degree">B.Tech — Artificial Intelligence &amp; Data Science</div><div class="edu-school">Anna University</div><div class="edu-years">2023 – 2027 · Grade A+</div><div class="edu-tags"><span class="edu-tag">🌐 Languages: Tamil, English, Hindi</span></div></div></div>
-</section>
-<section id="contact">
-  <div class="contact-lead reveal"><h2>Let's Build Something <span style="color:var(--signal)">Together.</span></h2><p>Open to Data Analyst and AI internship / entry-level roles. Reach out directly through any of the links below.</p></div>
-  <div class="contact-links reveal"><a class="contact-link" href="mailto:akashmeetha6072@gmail.com">✉ akashmeetha6072@gmail.com</a><a class="contact-link" href="tel:7010542280">☎ +91 70105 42280</a></div>
-</section>
-<footer><span>© 2026 Akash Meetha</span><span>Salem, Tamil Nadu</span></footer>
-<script>
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
-const revealEls=document.querySelectorAll('.reveal');
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.12});
-revealEls.forEach(el=>io.observe(el));
-const projectData=[
- {tag:'AI · NLP · HR Tech',title:'AI-Based Resume Screening System with Explainable Shortlisting',bullets:['Extracts candidate skills from PDF resumes using NLP and stores structured data in an SQL database','Computes a transparent match score against configurable job requirements, reporting matched and missing skills for every candidate','Supports bulk screening of multiple resumes and real-time single-resume testing through an interactive dashboard'],stack:['Python','PyPDF2','SQLite (SQL)','Streamlit']},
- {tag:'Machine Learning · NLP',title:'Fake News Detector using Machine Learning',bullets:['Classifies news articles as REAL or FAKE by analyzing article text using Natural Language Processing','Converts text into numerical features using TF-IDF and classifies using a Logistic Regression model','Achieves 98.5% accuracy on a dataset of 44,898 articles, with real-time predictions and confidence scores via a web dashboard'],stack:['Python','Scikit-learn','Pandas','NLP (TF-IDF)','Streamlit']},
- {tag:'Digital Forensics · Computer Vision',title:'Image & Video Manipulation Checker',bullets:['Detects potential manipulation in images and videos using Error Level Analysis (ELA)','Highlights edited regions by comparing an image against its recompressed version','Samples multiple video frames and applies the same forensic analysis, producing a manipulation score and verdict via a dashboard'],stack:['Python','OpenCV','Pillow (PIL)','NumPy','Streamlit']},
- {tag:'Recommendation System',title:'Personalized Learning Recommendation System',bullets:["Suggests personalized learning resources based on a student's performance history, course preferences and learning patterns",'Applies content-based filtering with similarity scoring to recommend the most relevant next course or topic','Stores student and course data in an SQL database, with recommendations and progress tracked on an interactive dashboard'],stack:['Python','Scikit-learn (Cosine Similarity)','Pandas','SQLite (SQL)','Streamlit']},
- {tag:'Mini Project · Computer Vision · AI',title:'Drowsiness Detection System',bullets:['Detects driver drowsiness using real-time webcam input.','Identifies closed eyes and yawning.','Plays an alert sound when drowsiness is detected.'],stack:['Python','OpenCV','MediaPipe','Mini Project']}
-];
-const modalOverlay=document.getElementById('project-modal'),modalTag=document.getElementById('modal-tag'),modalTitle=document.getElementById('modal-title'),modalBullets=document.getElementById('modal-bullets'),modalStack=document.getElementById('modal-stack');
-function openProject(i){const p=projectData[i];if(!p)return;modalTag.textContent=p.tag;modalTitle.textContent=p.title;modalBullets.innerHTML=p.bullets.map(b=>`<li>${b}</li>`).join('');modalStack.innerHTML=p.stack.map(s=>`<span class="tag-chip">${s}</span>`).join('');modalOverlay.classList.add('open');document.body.style.overflow='hidden'}
-function closeProject(){modalOverlay.classList.remove('open');document.body.style.overflow=''}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProject()});
-</script>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a href="#home" class="logo">Akash<span>.</span></a>
+
+      <button class="menu-btn" id="menuBtn"
+        aria-expanded="false" aria-controls="navLinks"
+        aria-label="Toggle navigation">☰ Menu</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content reveal">
+        <div class="eyebrow">Welcome to my portfolio</div>
+        <h1>Hi, I'm Akash<br><span>Meetha.</span></h1>
+        <p class="hero-description">
+          A B.Tech Artificial Intelligence and Data Science student
+          interested in data analytics, AI, and practical problem-solving.
+          I enjoy learning new technologies and developing useful projects.
+        </p>
+
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="#projects">Explore Projects ↗</a>
+          <a class="btn btn-secondary" href="#contact">Contact Me</a>
+          <a class="btn btn-secondary"
+             href="mailto:akashmeetha6072@gmail.com?subject=Request%20for%20Resume">
+             Request My Resume ↗
+          </a>
+        </div>
+
+        <div class="social-row">
+          <a href="https://github.com/Akashmeetha"
+             target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/akash-meetha-7821b7360"
+             target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a href="https://akashmeetha.github.io/portfolio/"
+             target="_blank" rel="noopener noreferrer">Portfolio URL ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Get to know me</div>
+          <h2 class="section-title">About <span class="accent">Me</span></h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="panel about-copy">
+            <p>
+              I'm pursuing my B.Tech in Artificial Intelligence and Data
+              Science at Tagore Institute of Engineering and Technology.
+            </p>
+            <p>
+              My technical skills include Python, SQL, Power BI, HTML,
+              and JavaScript. I'm interested in data analytics and
+              artificial intelligence, and I enjoy exploring how technology
+              can help solve real-world problems.
+            </p>
+            <p>
+              As a fresher, I'm looking forward to improving my skills,
+              gaining practical experience, and contributing to a team
+              where I can keep learning.
+            </p>
+          </div>
+
+          <div class="panel facts">
+            <div class="fact">
+              <strong>🎓 Degree</strong>
+              <span>B.Tech — Artificial Intelligence and Data Science</span>
+            </div>
+            <div class="fact">
+              <strong>🏫 Institution</strong>
+              <span>Tagore Institute of Engineering and Technology</span>
+            </div>
+            <div class="fact">
+              <strong>📊 CGPA</strong>
+              <span>8.0</span>
+            </div>
+            <div class="fact">
+              <strong>📍 Location</strong>
+              <span>Dharmapuri, Tamil Nadu, India</span>
+            </div>
+            <div class="fact">
+              <strong>🎯 Career Interests</strong>
+              <span>Data Analytics · AI · Problem Solving</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">My technical toolkit</div>
+          <h2 class="section-title">Technical <span class="accent">Skills</span></h2>
+          <p class="section-description">
+            Technologies I have learned and am continuing to develop.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="card skill-card">
+            <div class="skill-icon">🐍</div>
+            <h3>Python</h3>
+            <p>Programming</p>
+          </div>
+          <div class="card skill-card">
+            <div class="skill-icon">🗄️</div>
+            <h3>SQL</h3>
+            <p>Database queries</p>
+          </div>
+          <div class="card skill-card">
+            <div class="skill-icon">📊</div>
+            <h3>Power BI</h3>
+            <p>Data visualization</p>
+          </div>
+          <div class="card skill-card">
+            <div class="skill-icon">🌐</div>
+            <h3>HTML</h3>
+            <p>Web development</p>
+          </div>
+          <div class="card skill-card">
+            <div class="skill-icon">⚡</div>
+            <h3>JavaScript</h3>
+            <p>Web interactivity</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Selected work</div>
+          <h2 class="section-title">My <span class="accent">Projects</span></h2>
+          <p class="section-description">
+            Academic and practical projects related to AI, education,
+            and technology.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="card project-card">
+            <div class="project-icon">📄</div>
+            <h3>AI-Based Resume Screening System</h3>
+            <div class="tags">
+              <span class="tag">Artificial Intelligence</span>
+              <span class="tag">Recruitment</span>
+            </div>
+            <p>
+              Focuses on analysing resumes and matching candidate skills
+              with job requirements to help make the screening process
+              more efficient.
+            </p>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-icon">🎓</div>
+            <h3>AI-Based Personalized Learning System</h3>
+            <div class="tags">
+              <span class="tag">AI</span>
+              <span class="tag">Education</span>
+            </div>
+            <p>
+              Aims to help students find relevant courses and learning
+              resources based on their interests and learning needs.
+            </p>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-icon">🚁</div>
+            <h3>AI-Based Intelligent Drone Fleet Management System</h3>
+            <div class="tags">
+              <span class="tag">AI</span>
+              <span class="tag">Fleet Management</span>
+            </div>
+            <p>
+              Explores intelligent management of multiple drones, with
+              attention to task allocation, coordination, and battery
+              considerations.
+            </p>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-icon">😴</div>
+            <h3>Drowsiness Detection</h3>
+            <div class="tags">
+              <span class="tag">Mini Project</span>
+              <span class="tag">Detection</span>
+            </div>
+            <p>
+              A mini project related to drowsiness detection. Visit the
+              deployed application to explore the available demo.
+            </p>
+            <div class="project-actions">
+              <a class="btn btn-primary btn-small"
+                href="https://drowsiness-detection-45ly.onrender.com"
+                target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Learning and development</div>
+          <h2 class="section-title">Internship & <span class="accent">Training</span></h2>
+        </div>
+
+        <div class="timeline">
+          <article class="card timeline-item">
+            <div class="timeline-icon">💻</div>
+            <div>
+              <h3>Python with AI & ML Internship</h3>
+              <p>Code Bind Technology, Chennai</p>
+              <p>
+                Internship experience in the area of Python, Artificial
+                Intelligence, and Machine Learning.
+              </p>
+            </div>
+          </article>
+
+          <article class="card timeline-item">
+            <div class="timeline-icon">📚</div>
+            <div>
+              <h3>Technical Workshop</h3>
+              <p>Code Bind Technology</p>
+              <p>
+                Participated in a technical workshop to support technical
+                learning and development.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Academic background</div>
+          <h2 class="section-title">My <span class="accent">Education</span></h2>
+        </div>
+
+        <div class="timeline">
+          <article class="card timeline-item">
+            <div class="timeline-icon">🎓</div>
+            <div>
+              <h3>B.Tech — Artificial Intelligence and Data Science</h3>
+              <p>Tagore Institute of Engineering and Technology</p>
+              <p>2023 – 2027</p>
+              <p class="highlight">CGPA: 8.0</p>
+            </div>
+          </article>
+
+          <article class="card timeline-item">
+            <div class="timeline-icon">🏫</div>
+            <div>
+              <h3>Higher Secondary Education — Class 12</h3>
+              <p>Government Higher Secondary School, Panjapalli</p>
+              <p class="highlight">Percentage: 74%</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Professional development</div>
+          <h2 class="section-title">Certifications & <span class="accent">Training</span></h2>
+        </div>
+
+        <div class="two-column">
+          <article class="card">
+            <div class="achievement">
+              <div class="achievement-icon">📜</div>
+              <div>
+                <h3>Python with AI & ML Internship</h3>
+                <p>Code Bind Technology, Chennai</p>
+                <p>Training in Python, AI, and Machine Learning.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="achievement">
+              <div class="achievement-icon">🧠</div>
+              <div>
+                <h3>Technical Workshop</h3>
+                <p>Code Bind Technology</p>
+                <p>Technical learning and skill development.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <p class="contact-note">
+          Add a certificate image or credential link here once the original
+          certificate is available.
+        </p>
+      </div>
+    </section>
+
+    <section id="achievements">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Highlights</div>
+          <h2 class="section-title">Achievements & <span class="accent">Activities</span></h2>
+        </div>
+
+        <article class="card achievement">
+          <div class="achievement-icon">🏆</div>
+          <div>
+            <h3>First Prize — College AI Bingo</h3>
+            <p>
+              Won first prize in an AI Bingo game conducted at college.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Let's connect</div>
+          <h2 class="section-title">Contact <span class="accent">Me</span></h2>
+          <p class="section-description">
+            Feel free to reach out about career opportunities, professional
+            connections, or project discussions.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <a class="card contact-card" href="mailto:akashmeetha6072@gmail.com">
+            <span class="contact-icon">✉️</span>
+            <span>
+              <small>Email</small>
+              <strong>akashmeetha6072@gmail.com</strong>
+            </span>
+          </a>
+
+          <a class="card contact-card" href="tel:+917010542280">
+            <span class="contact-icon">📱</span>
+            <span>
+              <small>Phone</small>
+              <strong>+91 70105 42280</strong>
+            </span>
+          </a>
+
+          <a class="card contact-card"
+            href="https://www.linkedin.com/in/akash-meetha-7821b7360"
+            target="_blank" rel="noopener noreferrer">
+            <span class="contact-icon">💼</span>
+            <span>
+              <small>LinkedIn</small>
+              <strong>View LinkedIn Profile ↗</strong>
+            </span>
+          </a>
+
+          <a class="card contact-card"
+            href="https://github.com/Akashmeetha"
+            target="_blank" rel="noopener noreferrer">
+            <span class="contact-icon">💻</span>
+            <span>
+              <small>GitHub</small>
+              <strong>View GitHub Profile ↗</strong>
+            </span>
+          </a>
+
+          <a class="card contact-card"
+            href="https://akashmeetha.github.io/portfolio/"
+            target="_blank" rel="noopener noreferrer">
+            <span class="contact-icon">🌐</span>
+            <span>
+              <small>Portfolio</small>
+              <strong>Visit My Website ↗</strong>
+            </span>
+          </a>
+
+          <a class="card contact-card"
+            href="mailto:akashmeetha6072@gmail.com?subject=Request%20for%20Resume">
+            <span class="contact-icon">📄</span>
+            <span>
+              <small>Resume</small>
+              <strong>Request Resume by Email ↗</strong>
+            </span>
+          </a>
+        </div>
+
+        <p class="contact-note">
+          The resume option opens an email request; it does not download a
+          resume file automatically.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <a class="back-top" href="#home" aria-label="Back to top">↑</a>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Akash Meetha · Built with HTML, CSS & JavaScript.</p>
+      <p>Designed for learning, creativity, and continuous improvement.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.textContent = open ? "✕ Close" : "☰ Menu";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰ Menu";
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const sections = document.querySelectorAll("main section[id]");
+    const navItems = document.querySelectorAll(".nav-links a");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navItems.forEach(link => {
+              link.classList.toggle(
+                "active",
+                link.getAttribute("href") === "#" + entry.target.id
+              );
+            });
+          }
+        });
+      }, { rootMargin: "-25% 0px -60% 0px" });
+
+      sections.forEach(section => observer.observe(section));
+    }
+  </script>
 </body>
 </html>
