@@ -5,15 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b1020">
-
   <title>Akash Meetha | AI & Data Science Portfolio</title>
-  <meta name="description" content="Explore Akash Meetha's portfolio, education, Python, SQL, Power BI, AI projects, internship and achievements.">
-  <meta name="keywords" content="Akash Meetha, AI, Data Science, Python, SQL, Power BI, Portfolio">
+  <meta name="description" content="Akash Meetha's portfolio featuring AI projects, technical skills, education and experience.">
   <meta name="author" content="Akash Meetha">
-  <meta property="og:title" content="Akash Meetha | Portfolio">
-  <meta property="og:description" content="AI & Data Science student portfolio and projects.">
-  <meta property="og:type" content="website">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -33,33 +27,21 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 85px;
-    }
-
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
     body {
       font-family: Inter, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
     }
-
     a { color: inherit; text-decoration: none; }
     button { font: inherit; }
     img { max-width: 100%; display: block; }
-
     a:focus-visible, button:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 4px;
     }
-
-    .container {
-      width: min(var(--max-width), 90%);
-      margin-inline: auto;
-    }
-
+    .container { width: min(var(--max-width), 90%); margin-inline: auto; }
     .accent { color: var(--accent); }
     .muted { color: var(--muted); }
 
@@ -71,7 +53,6 @@
       backdrop-filter: blur(15px);
       border-bottom: 1px solid var(--border);
     }
-
     nav {
       min-height: 74px;
       display: flex;
@@ -79,31 +60,16 @@
       justify-content: space-between;
       gap: 20px;
     }
-
-    .logo {
-      font-size: 1.3rem;
-      font-weight: 800;
-      letter-spacing: -.5px;
-    }
-
+    .logo { font-size: 1.3rem; font-weight: 800; letter-spacing: -.5px; }
     .logo span { color: var(--accent); }
-
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 21px;
+      gap: 18px;
       list-style: none;
     }
-
-    .nav-links a {
-      color: var(--muted);
-      font-size: .88rem;
-      transition: color .2s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--accent); }
-
+    .nav-links a { color: var(--muted); font-size: .86rem; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
     .menu-btn {
       display: none;
       color: var(--text);
@@ -115,7 +81,6 @@
     }
 
     section { padding: 82px 0; }
-
     .hero {
       min-height: 82vh;
       display: flex;
@@ -126,9 +91,7 @@
         radial-gradient(ellipse at 80% 20%, rgba(117,224,208,.14), transparent 38%),
         radial-gradient(ellipse at 10% 85%, rgba(163,149,255,.12), transparent 35%);
     }
-
     .hero-content { position: relative; z-index: 1; }
-
     .eyebrow {
       color: var(--accent);
       font-size: .82rem;
@@ -136,27 +99,23 @@
       letter-spacing: 2px;
       font-weight: 700;
     }
-
     h1 {
       font-size: clamp(2.7rem, 8vw, 5.6rem);
       line-height: 1.08;
       letter-spacing: -3px;
       margin: 20px 0;
     }
-
     h1 span {
       color: transparent;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
       background-clip: text;
       -webkit-background-clip: text;
     }
-
     .hero-description {
       max-width: 700px;
       color: var(--muted);
       font-size: clamp(1rem, 2vw, 1.15rem);
     }
-
     .hero-buttons, .social-row {
       display: flex;
       align-items: center;
@@ -164,7 +123,6 @@
       gap: 13px;
       margin-top: 26px;
     }
-
     .btn {
       display: inline-flex;
       justify-content: center;
@@ -178,55 +136,35 @@
       transition: transform .2s, border-color .2s, background .2s;
       cursor: pointer;
     }
-
     .btn:hover { transform: translateY(-3px); }
     .btn-primary { color: #071a1a; background: var(--accent); border-color: var(--accent); }
     .btn-secondary { background: var(--surface); }
     .btn-small { padding: 8px 12px; font-size: .85rem; }
-
-    .social-row a {
-      color: var(--muted);
-      font-size: .9rem;
-    }
-
+    .social-row a { color: var(--muted); font-size: .9rem; }
     .social-row a:hover { color: var(--accent); }
 
     .section-heading { margin-bottom: 32px; }
-
     .section-title {
       font-size: clamp(2rem, 5vw, 2.8rem);
       line-height: 1.2;
       margin: 10px 0 12px;
       letter-spacing: -1px;
     }
-
-    .section-description {
-      max-width: 730px;
-      color: var(--muted);
-    }
-
+    .section-description { max-width: 730px; color: var(--muted); }
     .panel, .card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 25px;
     }
-
     .about-grid {
       display: grid;
       grid-template-columns: 1.15fr .85fr;
       gap: 22px;
     }
-
     .about-copy p + p { margin-top: 14px; }
-
     .facts { display: grid; gap: 15px; }
-
-    .fact {
-      padding-bottom: 13px;
-      border-bottom: 1px solid var(--border);
-    }
-
+    .fact { padding-bottom: 13px; border-bottom: 1px solid var(--border); }
     .fact:last-child { padding-bottom: 0; border-bottom: 0; }
     .fact strong { display: block; margin-bottom: 3px; }
     .fact span { color: var(--muted); font-size: .94rem; }
@@ -236,7 +174,6 @@
       grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 15px;
     }
-
     .skill-card { text-align: center; padding: 23px 12px; }
     .skill-icon { font-size: 1.9rem; margin-bottom: 8px; }
     .skill-card h3 { font-size: 1rem; }
@@ -247,22 +184,18 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 20px;
     }
-
     .project-card {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       transition: transform .2s, border-color .2s;
     }
-
     .project-card:hover { transform: translateY(-4px); border-color: var(--accent); }
     .project-icon { font-size: 2rem; margin-bottom: 12px; }
     .project-card h3 { font-size: 1.13rem; line-height: 1.45; margin-bottom: 10px; }
     .project-card p { color: var(--muted); margin-bottom: 17px; }
     .project-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
-
     .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 16px; }
-
     .tag {
       color: var(--accent);
       border: 1px solid var(--border);
@@ -272,14 +205,12 @@
     }
 
     .timeline { display: grid; gap: 17px; }
-
     .timeline-item {
       display: grid;
       grid-template-columns: 52px 1fr;
       gap: 16px;
       align-items: start;
     }
-
     .timeline-icon {
       width: 50px;
       height: 50px;
@@ -289,7 +220,6 @@
       background: var(--surface2);
       font-size: 1.5rem;
     }
-
     .timeline-item h3 { font-size: 1.08rem; margin-bottom: 5px; }
     .timeline-item p { color: var(--muted); }
     .timeline-item .highlight { color: var(--accent); margin-top: 5px; }
@@ -299,17 +229,10 @@
       grid-template-columns: 1fr 1fr;
       gap: 20px;
     }
-
     .card h3 { margin-bottom: 12px; }
     .card p { color: var(--muted); }
     .card p + p { margin-top: 9px; }
-
-    .achievement {
-      display: flex;
-      align-items: flex-start;
-      gap: 15px;
-    }
-
+    .achievement { display: flex; align-items: flex-start; gap: 15px; }
     .achievement-icon { font-size: 1.8rem; }
 
     .contact-grid {
@@ -317,7 +240,6 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
-
     .contact-card {
       display: flex;
       align-items: center;
@@ -325,12 +247,10 @@
       overflow-wrap: anywhere;
       transition: border-color .2s, transform .2s;
     }
-
     .contact-card:hover { border-color: var(--accent); transform: translateY(-3px); }
     .contact-icon { font-size: 1.6rem; }
     .contact-card small { display: block; color: var(--muted); }
     .contact-card strong { font-size: .91rem; }
-
     .contact-note { color: var(--muted); margin-top: 20px; }
 
     footer {
@@ -340,7 +260,6 @@
       color: var(--muted);
       font-size: .88rem;
     }
-
     .back-top {
       position: fixed;
       right: 20px;
@@ -357,9 +276,7 @@
       z-index: 20;
       box-shadow: 0 5px 20px rgba(0,0,0,.25);
     }
-
     .reveal { animation: fadeIn .65s ease both; }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
@@ -371,13 +288,11 @@
       .skills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .about-grid { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 650px) {
       html { scroll-padding-top: 70px; }
       section { padding: 62px 0; }
       nav { min-height: 66px; }
       .menu-btn { display: block; }
-
       .nav-links {
         display: none;
         position: absolute;
@@ -391,7 +306,6 @@
         flex-direction: column;
         gap: 16px;
       }
-
       .nav-links.open { display: flex; }
       .nav-links a { font-size: .95rem; }
       .hero { min-height: 75vh; }
@@ -401,7 +315,6 @@
       .panel, .card { padding: 20px; }
       .back-top { right: 12px; bottom: 12px; }
     }
-
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after {
@@ -413,470 +326,330 @@
 </head>
 
 <body>
-  <header>
-    <nav class="container" aria-label="Main navigation">
-      <a href="#home" class="logo">Akash<span>.</span></a>
+<header>
+  <nav class="container" aria-label="Main navigation">
+    <a href="#home" class="logo">Akash<span>.</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false"
+      aria-controls="navLinks" aria-label="Toggle navigation">☰ Menu</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-      <button class="menu-btn" id="menuBtn"
-        aria-expanded="false" aria-controls="navLinks"
-        aria-label="Toggle navigation">☰ Menu</button>
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-content reveal">
+      <div class="eyebrow">Welcome to my portfolio</div>
+      <h1>Hi, I'm Akash<br><span>Meetha.</span></h1>
+      <p class="hero-description">
+        A B.Tech Artificial Intelligence and Data Science student interested
+        in data analytics, AI, and practical problem-solving. I enjoy learning
+        new technologies and developing useful projects.
+      </p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#projects">Explore Projects ↗</a>
+        <a class="btn btn-secondary" href="#contact">Contact Me</a>
+        <a class="btn btn-secondary" href="Akash%20meetha%20resume.pdf"
+          target="_blank" rel="noopener noreferrer">View My Resume ↗</a>
+      </div>
+      <div class="social-row">
+        <a href="https://github.com/Akashmeetha" target="_blank"
+          rel="noopener noreferrer">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/akash-meetha-7821b7360"
+          target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a href="https://akashmeetha.github.io/portfolio/"
+          target="_blank" rel="noopener noreferrer">Portfolio URL ↗</a>
+      </div>
+    </div>
+  </section>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#achievements">Achievements</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-content reveal">
-        <div class="eyebrow">Welcome to my portfolio</div>
-        <h1>Hi, I'm Akash<br><span>Meetha.</span></h1>
-        <p class="hero-description">
-          A B.Tech Artificial Intelligence and Data Science student
-          interested in data analytics, AI, and practical problem-solving.
-          I enjoy learning new technologies and developing useful projects.
-        </p>
-
-        <div class="hero-buttons">
-          <a class="btn btn-primary" href="#projects">Explore Projects ↗</a>
-          <a class="btn btn-secondary" href="#contact">Contact Me</a>
-          <a class="btn btn-secondary"
-             href="mailto:akashmeetha6072@gmail.com?subject=Request%20for%20Resume">
-             Request My Resume ↗
-          </a>
+  <section id="about">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Get to know me</div>
+        <h2 class="section-title">About <span class="accent">Me</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="panel about-copy">
+          <p>I'm pursuing my B.Tech in Artificial Intelligence and Data Science at Tagore Institute of Engineering and Technology.</p>
+          <p>My technical skills include Python, SQL, Power BI, HTML, and JavaScript. I'm interested in data analytics and artificial intelligence, and I enjoy exploring how technology can help solve real-world problems.</p>
+          <p>As a fresher, I'm looking forward to improving my skills, gaining practical experience, and contributing to a team where I can keep learning.</p>
         </div>
-
-        <div class="social-row">
-          <a href="https://github.com/Akashmeetha"
-             target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a href="https://www.linkedin.com/in/akash-meetha-7821b7360"
-             target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-          <a href="https://akashmeetha.github.io/portfolio/"
-             target="_blank" rel="noopener noreferrer">Portfolio URL ↗</a>
+        <div class="panel facts">
+          <div class="fact"><strong>🎓 Degree</strong><span>B.Tech — Artificial Intelligence and Data Science</span></div>
+          <div class="fact"><strong>🏫 Institution</strong><span>Tagore Institute of Engineering and Technology</span></div>
+          <div class="fact"><strong>📊 CGPA</strong><span>8.0</span></div>
+          <div class="fact"><strong>📍 Location</strong><span>Dharmapuri, Tamil Nadu, India</span></div>
+          <div class="fact"><strong>🎯 Career Interests</strong><span>Data Analytics · AI · Problem Solving</span></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="about">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Get to know me</div>
-          <h2 class="section-title">About <span class="accent">Me</span></h2>
-        </div>
-
-        <div class="about-grid">
-          <div class="panel about-copy">
-            <p>
-              I'm pursuing my B.Tech in Artificial Intelligence and Data
-              Science at Tagore Institute of Engineering and Technology.
-            </p>
-            <p>
-              My technical skills include Python, SQL, Power BI, HTML,
-              and JavaScript. I'm interested in data analytics and
-              artificial intelligence, and I enjoy exploring how technology
-              can help solve real-world problems.
-            </p>
-            <p>
-              As a fresher, I'm looking forward to improving my skills,
-              gaining practical experience, and contributing to a team
-              where I can keep learning.
-            </p>
-          </div>
-
-          <div class="panel facts">
-            <div class="fact">
-              <strong>🎓 Degree</strong>
-              <span>B.Tech — Artificial Intelligence and Data Science</span>
-            </div>
-            <div class="fact">
-              <strong>🏫 Institution</strong>
-              <span>Tagore Institute of Engineering and Technology</span>
-            </div>
-            <div class="fact">
-              <strong>📊 CGPA</strong>
-              <span>8.0</span>
-            </div>
-            <div class="fact">
-              <strong>📍 Location</strong>
-              <span>Dharmapuri, Tamil Nadu, India</span>
-            </div>
-            <div class="fact">
-              <strong>🎯 Career Interests</strong>
-              <span>Data Analytics · AI · Problem Solving</span>
-            </div>
-          </div>
-        </div>
+  <section id="skills">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">My technical toolkit</div>
+        <h2 class="section-title">Technical <span class="accent">Skills</span></h2>
+        <p class="section-description">Technologies I have learned and am continuing to develop.</p>
       </div>
-    </section>
-
-    <section id="skills">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">My technical toolkit</div>
-          <h2 class="section-title">Technical <span class="accent">Skills</span></h2>
-          <p class="section-description">
-            Technologies I have learned and am continuing to develop.
-          </p>
-        </div>
-
-        <div class="skills-grid">
-          <div class="card skill-card">
-            <div class="skill-icon">🐍</div>
-            <h3>Python</h3>
-            <p>Programming</p>
-          </div>
-          <div class="card skill-card">
-            <div class="skill-icon">🗄️</div>
-            <h3>SQL</h3>
-            <p>Database queries</p>
-          </div>
-          <div class="card skill-card">
-            <div class="skill-icon">📊</div>
-            <h3>Power BI</h3>
-            <p>Data visualization</p>
-          </div>
-          <div class="card skill-card">
-            <div class="skill-icon">🌐</div>
-            <h3>HTML</h3>
-            <p>Web development</p>
-          </div>
-          <div class="card skill-card">
-            <div class="skill-icon">⚡</div>
-            <h3>JavaScript</h3>
-            <p>Web interactivity</p>
-          </div>
-        </div>
+      <div class="skills-grid">
+        <div class="card skill-card"><div class="skill-icon">🐍</div><h3>Python</h3><p>Programming</p></div>
+        <div class="card skill-card"><div class="skill-icon">🗄️</div><h3>SQL</h3><p>Database queries</p></div>
+        <div class="card skill-card"><div class="skill-icon">📊</div><h3>Power BI</h3><p>Data visualization</p></div>
+        <div class="card skill-card"><div class="skill-icon">🌐</div><h3>HTML</h3><p>Web development</p></div>
+        <div class="card skill-card"><div class="skill-icon">⚡</div><h3>JavaScript</h3><p>Web interactivity</p></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="projects">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Selected work</div>
-          <h2 class="section-title">My <span class="accent">Projects</span></h2>
-          <p class="section-description">
-            Academic and practical projects related to AI, education,
-            and technology.
-          </p>
-        </div>
-
-        <div class="projects-grid">
-          <article class="card project-card">
-            <div class="project-icon">📄</div>
-            <h3>AI-Based Resume Screening System</h3>
-            <div class="tags">
-              <span class="tag">Artificial Intelligence</span>
-              <span class="tag">Recruitment</span>
-            </div>
-            <p>
-              Focuses on analysing resumes and matching candidate skills
-              with job requirements to help make the screening process
-              more efficient.
-            </p>
-          </article>
-
-          <article class="card project-card">
-            <div class="project-icon">🎓</div>
-            <h3>AI-Based Personalized Learning System</h3>
-            <div class="tags">
-              <span class="tag">AI</span>
-              <span class="tag">Education</span>
-            </div>
-            <p>
-              Aims to help students find relevant courses and learning
-              resources based on their interests and learning needs.
-            </p>
-          </article>
-
-          <article class="card project-card">
-            <div class="project-icon">🚁</div>
-            <h3>AI-Based Intelligent Drone Fleet Management System</h3>
-            <div class="tags">
-              <span class="tag">AI</span>
-              <span class="tag">Fleet Management</span>
-            </div>
-            <p>
-              Explores intelligent management of multiple drones, with
-              attention to task allocation, coordination, and battery
-              considerations.
-            </p>
-          </article>
-
-          <article class="card project-card">
-            <div class="project-icon">😴</div>
-            <h3>Drowsiness Detection</h3>
-            <div class="tags">
-              <span class="tag">Mini Project</span>
-              <span class="tag">Detection</span>
-            </div>
-            <p>
-              A mini project related to drowsiness detection. Visit the
-              deployed application to explore the available demo.
-            </p>
-            <div class="project-actions">
-              <a class="btn btn-primary btn-small"
-                href="https://drowsiness-detection-45ly.onrender.com"
-                target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
-            </div>
-          </article>
-        </div>
+  <section id="projects">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Selected work</div>
+        <h2 class="section-title">My <span class="accent">Projects</span></h2>
+        <p class="section-description">Academic and practical projects related to AI, education, and technology.</p>
       </div>
-    </section>
 
-    <section id="experience">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Learning and development</div>
-          <h2 class="section-title">Internship & <span class="accent">Training</span></h2>
-        </div>
+      <div class="projects-grid">
+        <article class="card project-card">
+          <div class="project-icon">📄</div>
+          <h3>AI-Based Resume Screening System</h3>
+          <div class="tags">
+            <span class="tag">Artificial Intelligence</span><span class="tag">Recruitment</span>
+          </div>
+          <p>Focuses on analysing resumes and matching candidate skills with job requirements to help make the screening process more efficient.</p>
+          <div class="project-actions">
+            <a class="btn btn-secondary btn-small"
+              href="mailto:akashmeetha6072@gmail.com?subject=Resume%20Screening%20Project%20Demo">
+              Request Demo ↗
+            </a>
+          </div>
+        </article>
 
-        <div class="timeline">
-          <article class="card timeline-item">
-            <div class="timeline-icon">💻</div>
-            <div>
-              <h3>Python with AI & ML Internship</h3>
-              <p>Code Bind Technology, Chennai</p>
-              <p>
-                Internship experience in the area of Python, Artificial
-                Intelligence, and Machine Learning.
-              </p>
-            </div>
-          </article>
+        <article class="card project-card">
+          <div class="project-icon">🎓</div>
+          <h3>AI-Based Personalized Learning Recommendation System</h3>
+          <div class="tags">
+            <span class="tag">AI</span><span class="tag">Education</span><span class="tag">Recommendation</span>
+          </div>
+          <p>Aims to help students find relevant courses and learning resources based on their interests and learning needs.</p>
+          <div class="project-actions">
+            <a class="btn btn-secondary btn-small"
+              href="mailto:akashmeetha6072@gmail.com?subject=Personalized%20Learning%20Project%20Demo">
+              Request Demo ↗
+            </a>
+          </div>
+        </article>
 
-          <article class="card timeline-item">
-            <div class="timeline-icon">📚</div>
-            <div>
-              <h3>Technical Workshop</h3>
-              <p>Code Bind Technology</p>
-              <p>
-                Participated in a technical workshop to support technical
-                learning and development.
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="education">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Academic background</div>
-          <h2 class="section-title">My <span class="accent">Education</span></h2>
-        </div>
-
-        <div class="timeline">
-          <article class="card timeline-item">
-            <div class="timeline-icon">🎓</div>
-            <div>
-              <h3>B.Tech — Artificial Intelligence and Data Science</h3>
-              <p>Tagore Institute of Engineering and Technology</p>
-              <p>2023 – 2027</p>
-              <p class="highlight">CGPA: 8.0</p>
-            </div>
-          </article>
-
-          <article class="card timeline-item">
-            <div class="timeline-icon">🏫</div>
-            <div>
-              <h3>Higher Secondary Education — Class 12</h3>
-              <p>Government Higher Secondary School, Panjapalli</p>
-              <p class="highlight">Percentage: 74%</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="certifications">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Professional development</div>
-          <h2 class="section-title">Certifications & <span class="accent">Training</span></h2>
-        </div>
-
-        <div class="two-column">
-          <article class="card">
-            <div class="achievement">
-              <div class="achievement-icon">📜</div>
-              <div>
-                <h3>Python with AI & ML Internship</h3>
-                <p>Code Bind Technology, Chennai</p>
-                <p>Training in Python, AI, and Machine Learning.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="achievement">
-              <div class="achievement-icon">🧠</div>
-              <div>
-                <h3>Technical Workshop</h3>
-                <p>Code Bind Technology</p>
-                <p>Technical learning and skill development.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <p class="contact-note">
-          Add a certificate image or credential link here once the original
-          certificate is available.
-        </p>
-      </div>
-    </section>
-
-    <section id="achievements">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Highlights</div>
-          <h2 class="section-title">Achievements & <span class="accent">Activities</span></h2>
-        </div>
-
-        <article class="card achievement">
-          <div class="achievement-icon">🏆</div>
-          <div>
-            <h3>First Prize — College AI Bingo</h3>
-            <p>
-              Won first prize in an AI Bingo game conducted at college.
-            </p>
+        <article class="card project-card">
+          <div class="project-icon">😴</div>
+          <h3>Drowsiness Detection</h3>
+          <div class="tags">
+            <span class="tag">Mini Project</span><span class="tag">Detection</span>
+          </div>
+          <p>A mini project related to drowsiness detection. Visit the deployed application to explore the available demo.</p>
+          <div class="project-actions">
+            <a class="btn btn-primary btn-small"
+              href="https://drowsiness-detection-45ly.onrender.com"
+              target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
           </div>
         </article>
       </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Let's connect</div>
-          <h2 class="section-title">Contact <span class="accent">Me</span></h2>
-          <p class="section-description">
-            Feel free to reach out about career opportunities, professional
-            connections, or project discussions.
-          </p>
-        </div>
-
-        <div class="contact-grid">
-          <a class="card contact-card" href="mailto:akashmeetha6072@gmail.com">
-            <span class="contact-icon">✉️</span>
-            <span>
-              <small>Email</small>
-              <strong>akashmeetha6072@gmail.com</strong>
-            </span>
-          </a>
-
-          <a class="card contact-card" href="tel:+917010542280">
-            <span class="contact-icon">📱</span>
-            <span>
-              <small>Phone</small>
-              <strong>+91 70105 42280</strong>
-            </span>
-          </a>
-
-          <a class="card contact-card"
-            href="https://www.linkedin.com/in/akash-meetha-7821b7360"
-            target="_blank" rel="noopener noreferrer">
-            <span class="contact-icon">💼</span>
-            <span>
-              <small>LinkedIn</small>
-              <strong>View LinkedIn Profile ↗</strong>
-            </span>
-          </a>
-
-          <a class="card contact-card"
-            href="https://github.com/Akashmeetha"
-            target="_blank" rel="noopener noreferrer">
-            <span class="contact-icon">💻</span>
-            <span>
-              <small>GitHub</small>
-              <strong>View GitHub Profile ↗</strong>
-            </span>
-          </a>
-
-          <a class="card contact-card"
-            href="https://akashmeetha.github.io/portfolio/"
-            target="_blank" rel="noopener noreferrer">
-            <span class="contact-icon">🌐</span>
-            <span>
-              <small>Portfolio</small>
-              <strong>Visit My Website ↗</strong>
-            </span>
-          </a>
-
-          <a class="card contact-card"
-            href="mailto:akashmeetha6072@gmail.com?subject=Request%20for%20Resume">
-            <span class="contact-icon">📄</span>
-            <span>
-              <small>Resume</small>
-              <strong>Request Resume by Email ↗</strong>
-            </span>
-          </a>
-        </div>
-
-        <p class="contact-note">
-          The resume option opens an email request; it does not download a
-          resume file automatically.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <a class="back-top" href="#home" aria-label="Back to top">↑</a>
-
-  <footer>
-    <div class="container">
-      <p>© <span id="year"></span> Akash Meetha · Built with HTML, CSS & JavaScript.</p>
-      <p>Designed for learning, creativity, and continuous improvement.</p>
     </div>
-  </footer>
+  </section>
 
-  <script>
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = document.getElementById("navLinks");
+  <section id="experience">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Learning and development</div>
+        <h2 class="section-title">Internship & <span class="accent">Training</span></h2>
+      </div>
+      <div class="timeline">
+        <article class="card timeline-item">
+          <div class="timeline-icon">💻</div>
+          <div>
+            <h3>Python with AI & ML Internship</h3>
+            <p>Code Bind Technology, Chennai</p>
+            <p>Internship experience in the area of Python, Artificial Intelligence, and Machine Learning.</p>
+          </div>
+        </article>
+        <article class="card timeline-item">
+          <div class="timeline-icon">📚</div>
+          <div>
+            <h3>Technical Workshop</h3>
+            <p>Code Bind Technology</p>
+            <p>Participated in a technical workshop to support technical learning and development.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-    menuBtn.addEventListener("click", () => {
-      const open = navLinks.classList.toggle("open");
-      menuBtn.setAttribute("aria-expanded", String(open));
-      menuBtn.textContent = open ? "✕ Close" : "☰ Menu";
+  <section id="education">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Academic background</div>
+        <h2 class="section-title">My <span class="accent">Education</span></h2>
+      </div>
+      <div class="timeline">
+        <article class="card timeline-item">
+          <div class="timeline-icon">🎓</div>
+          <div>
+            <h3>B.Tech — Artificial Intelligence and Data Science</h3>
+            <p>Tagore Institute of Engineering and Technology</p>
+            <p>2023 – 2027</p>
+            <p class="highlight">CGPA: 8.0</p>
+          </div>
+        </article>
+        <article class="card timeline-item">
+          <div class="timeline-icon">🏫</div>
+          <div>
+            <h3>Higher Secondary Education — Class 12</h3>
+            <p>Government Higher Secondary School, Panjapalli</p>
+            <p class="highlight">Percentage: 74%</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Professional development</div>
+        <h2 class="section-title">Certifications & <span class="accent">Training</span></h2>
+      </div>
+      <div class="two-column">
+        <article class="card">
+          <div class="achievement">
+            <div class="achievement-icon">📜</div>
+            <div>
+              <h3>Python with AI & ML Internship</h3>
+              <p>Code Bind Technology, Chennai</p>
+              <p>Training in Python, AI, and Machine Learning.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="achievement">
+            <div class="achievement-icon">🧠</div>
+            <div>
+              <h3>Technical Workshop</h3>
+              <p>Code Bind Technology</p>
+              <p>Technical learning and skill development.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="contact-note">Certificate details can be added here when the original certificate file is available.</p>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Highlights</div>
+        <h2 class="section-title">Achievements & <span class="accent">Activities</span></h2>
+      </div>
+      <article class="card achievement">
+        <div class="achievement-icon">🏆</div>
+        <div>
+          <h3>First Prize — College AI Bingo</h3>
+          <p>Won first prize in an AI Bingo game conducted at college.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Let's connect</div>
+        <h2 class="section-title">Contact <span class="accent">Me</span></h2>
+        <p class="section-description">Feel free to reach out about career opportunities, professional connections, or project discussions.</p>
+      </div>
+
+      <div class="contact-grid">
+        <a class="card contact-card" href="mailto:akashmeetha6072@gmail.com">
+          <span class="contact-icon">✉️</span><span><small>Email</small><strong>akashmeetha6072@gmail.com</strong></span>
+        </a>
+        <a class="card contact-card" href="tel:+917010542280">
+          <span class="contact-icon">📱</span><span><small>Phone</small><strong>+91 70105 42280</strong></span>
+        </a>
+        <a class="card contact-card" href="https://www.linkedin.com/in/akash-meetha-7821b7360" target="_blank" rel="noopener noreferrer">
+          <span class="contact-icon">💼</span><span><small>LinkedIn</small><strong>View LinkedIn Profile ↗</strong></span>
+        </a>
+        <a class="card contact-card" href="https://github.com/Akashmeetha" target="_blank" rel="noopener noreferrer">
+          <span class="contact-icon">💻</span><span><small>GitHub</small><strong>View GitHub Profile ↗</strong></span>
+        </a>
+        <a class="card contact-card" href="https://akashmeetha.github.io/portfolio/" target="_blank" rel="noopener noreferrer">
+          <span class="contact-icon">🌐</span><span><small>Portfolio</small><strong>Visit My Website ↗</strong></span>
+        </a>
+        <a class="card contact-card" href="Akash%20meetha%20resume.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="contact-icon">📄</span><span><small>Resume</small><strong>View My Resume ↗</strong></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<a class="back-top" href="#home" aria-label="Back to top">↑</a>
+
+<footer>
+  <div class="container">
+    <p>© <span id="year"></span> Akash Meetha · Built with HTML, CSS & JavaScript.</p>
+    <p>Designed for learning, creativity, and continuous improvement.</p>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const navLinks = document.getElementById("navLinks");
+
+  menuBtn.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", String(isOpen));
+    menuBtn.textContent = isOpen ? "✕ Close" : "☰ Menu";
+  });
+
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.textContent = "☰ Menu";
     });
+  });
 
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuBtn.setAttribute("aria-expanded", "false");
-        menuBtn.textContent = "☰ Menu";
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const sections = document.querySelectorAll("main section[id]");
+  const navItems = document.querySelectorAll(".nav-links a");
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navItems.forEach(link => {
+            link.classList.toggle(
+              "active",
+              link.getAttribute("href") === "#" + entry.target.id
+            );
+          });
+        }
       });
-    });
+    }, { rootMargin: "-25% 0px -60% 0px" });
 
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const sections = document.querySelectorAll("main section[id]");
-    const navItems = document.querySelectorAll(".nav-links a");
-
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navItems.forEach(link => {
-              link.classList.toggle(
-                "active",
-                link.getAttribute("href") === "#" + entry.target.id
-              );
-            });
-          }
-        });
-      }, { rootMargin: "-25% 0px -60% 0px" });
-
-      sections.forEach(section => observer.observe(section));
-    }
-  </script>
+    sections.forEach(section => observer.observe(section));
+  }
+</script>
 </body>
 </html>
